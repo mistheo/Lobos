@@ -44,9 +44,9 @@ function projectCard(p, { hidden = false } = {}) {
     </article>`;
 }
 
-// Projets phares (accueil) : uniquement les fiches cochées "phare", triées par ordre.
-export function renderProjectsPhares(projets) {
-  return projets.filter((p) => p.phare).map((p) => projectCard(p)).join('');
+// Projets phares (accueil) : reçoit déjà les fiches filtrées sur "phare" par le routeur.
+export function renderProjectsPhares(phares) {
+  return phares.map((p) => projectCard(p)).join('');
 }
 
 // Carrousel de la galerie : toutes les fiches, plus un doublon aria-hidden pour la boucle infinie.

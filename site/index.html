@@ -61,7 +61,7 @@
     <a class="btn btn-ghost" href="#services">Tous les services <i class="ph ph-arrow-right"></i></a>
   </section>
 
-  <section class="wrap section">
+  <section class="wrap section" data-section="projets-phares" hidden>
     <div class="card-head"><h2>Projets phares</h2><span class="tag tag-outline mono-tag">CMS · case « projet phare »</span></div>
     <p class="section-lead">Une sélection de trois projets. Dans PagesCMS, cochez « projet phare » sur une fiche pour qu’elle apparaisse ici ; tous les autres projets restent visibles dans la galerie.</p>
     <div class="grid-3" data-slot="projets-phares"></div>
@@ -134,19 +134,21 @@
     <p class="lead">Réparations, maquettes, séries d’atelier, pièces sur mesure. Les projets cochés « phare » dans le CMS apparaissent aussi sur l’accueil.</p>
     <span class="tag tag-outline mono-tag">CMS · collection « projets »</span>
   </header>
-  <section class="wrap section">
-    <div class="filters">
-      <button class="tag tag-accent" type="button">Tous</button>
-      <button class="tag tag-neutral" type="button">Particuliers</button>
-      <button class="tag tag-neutral" type="button">Professionnels</button>
-      <button class="tag tag-neutral" type="button">Réparation</button>
-      <button class="tag tag-neutral" type="button">Maquettes</button>
+  <div data-section="galerie-content" hidden>
+    <section class="wrap section">
+      <div class="filters">
+        <button class="tag tag-accent" type="button">Tous</button>
+        <button class="tag tag-neutral" type="button">Particuliers</button>
+        <button class="tag tag-neutral" type="button">Professionnels</button>
+        <button class="tag tag-neutral" type="button">Réparation</button>
+        <button class="tag tag-neutral" type="button">Maquettes</button>
+      </div>
+    </section>
+    <div class="marquee" data-marquee>
+      <div class="marquee-track" data-slot="galerie"></div>
     </div>
-  </section>
-  <div class="marquee" data-marquee>
-    <div class="marquee-track" data-slot="galerie"></div>
+    <p class="wrap mono-note">Défilement continu de droite à gauche · glisser pour naviguer · pause au survol · ordre géré dans le CMS</p>
   </div>
-  <p class="wrap mono-note">Défilement continu de droite à gauche · pause au survol · ordre géré dans le CMS</p>
   <section class="band">
     <div class="wrap band-inner">
       <div><h2>Votre projet ne ressemble à aucun de ceux-là ? Écrivez-nous quand même.</h2></div>

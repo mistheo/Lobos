@@ -4,6 +4,7 @@
    affichage (mis en cache ensuite par data.js). */
 import * as data from './data.js';
 import * as render from './render.js';
+import { initMarquee } from './marquee.js';
 
 const VIEWS = ['accueil', 'a-propos', 'services', 'galerie', 'contact'];
 const TITLES = {
@@ -20,6 +21,11 @@ function setSlot(slot, html) {
   if (el) el.innerHTML = html;
 }
 
+function toggleSection(name, visible) {
+  const el = document.querySelector(`[data-section="${name}"]`);
+  if (el) el.hidden = !visible;
+}
+
 async function renderView(id) {
   if (rendered.has(id)) return;
   try {
@@ -29,11 +35,16 @@ async function renderView(id) {
       ]);
       setSlot('atouts', render.renderAtoutsList(atouts));
       setSlot('services-preview', render.renderServiceCards(services.slice(0, 3)));
-      setSlot('projets-phares', render.renderProjectsPhares(projets));
+      const phares = projets.filter((p) => p.phare);
+      setSlot('projets-phares', render.renderProjectsPhares(phares));
+      toggleSection('projets-phares', phares.length > 0);
     } else if (id === 'services') {
       setSlot('services', render.renderServiceRows(await data.loadServices()));
     } else if (id === 'galerie') {
-      setSlot('galerie', render.renderGalerieMarquee(await data.loadProjets()));
+      const projets = await data.loadProjets();
+      setSlot('galerie', render.renderGalerieMarquee(projets));
+      toggleSection('galerie-content', projets.length > 0);
+      if (projets.length > 0) initMarquee(document.querySelector('[data-marquee]'));
     } else if (id === 'a-propos') {
       const [aPropos, equipe] = await Promise.all([data.loadAPropos(), data.loadEquipe()]);
       setSlot('a-propos-titre', escapeText(aPropos.titre));
