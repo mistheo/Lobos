@@ -1,0 +1,38 @@
+[
+  {
+    "titre": "Impression filament (FDM)",
+    "icone": "cube",
+    "description": "PLA, PETG, TPU souple. Volume jusqu'à 300 × 300 × 400 mm.",
+    "ordre": 1
+  },
+  {
+    "titre": "Impression résine (SLA)",
+    "icone": "drop",
+    "description": "Couches de 25 µm pour les pièces de détail et les figurines.",
+    "ordre": 2
+  },
+  {
+    "titre": "Modélisation 3D",
+    "icone": "compass-tool",
+    "description": "Nous dessinons la pièce à partir de mesures, d'un plan ou d'une photo.",
+    "ordre": 3
+  },
+  {
+    "titre": "Pièces de rechange",
+    "icone": "wrench",
+    "description": "Réparer plutôt que remplacer : une pièce cassée suffit comme modèle.",
+    "ordre": 4
+  },
+  {
+    "titre": "Petites séries",
+    "icone": "stack",
+    "description": "De dix à quelques centaines d'exemplaires, tarif dégressif.",
+    "ordre": 5
+  },
+  {
+    "titre": "Finitions",
+    "icone": "paint-brush-broad",
+    "description": "Ponçage, apprêt, peinture, assemblage et collage.",
+    "ordre": 6
+  }
+]
