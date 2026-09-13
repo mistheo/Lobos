@@ -77,6 +77,5 @@ quels, seule la génération de `site/data/*.json` tourne en CI.
 ## À compléter
 
 - Workflow GitHub Actions de déploiement vers O2 Switch (identifiants à ajouter en secrets).
-- Photos de projets et de l'atelier (placeholders rayés aujourd'hui).
 - Plan d'accès de la page contact (image statique ou iframe).
 - Endpoint du formulaire de contact (`action` du `<form>`) : service tiers, l'hébergement est statique.
