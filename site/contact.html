@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contact · Lobos</title>
+<meta name="description" content="Parlons de votre projet d’impression 3D. Réponse rapide et circuit court.">
+<script>(function(){var m=document.cookie.match(/(?:^|; )lobos-theme=([^;]*)/);if(m&&m[1]==='light')document.documentElement.dataset.theme='light';})();</script>
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/nocturne.css">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+<link rel="stylesheet" href="css/lobos.css">
+</head>
+<body>
+<a class="skip" href="#main">Aller au contenu</a>
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="nav-brand" href="index.html"><span class="logo-mark" aria-hidden="true"></span><span class="wordmark">Lobos<span class="dot">.</span></span></a>
+    <nav class="nav-links" aria-label="Navigation principale">
+      <a href="index.html">Accueil</a>
+      <a href="a-propos.html">À propos</a>
+      <a href="services.html">Services</a>
+      <a href="galerie.html">Galerie</a>
+      <a href="contact.html" aria-current="page">Contact</a>
+    </nav>
+    <button class="btn btn-secondary btn-icon theme-toggle" type="button" aria-label="Basculer entre thème clair et sombre" data-theme-toggle>
+      <i class="ph ph-sun" data-icon-dark></i><i class="ph ph-moon" data-icon-light></i>
+    </button>
+    <button class="btn btn-secondary btn-icon burger" type="button" aria-expanded="false" aria-controls="menu-mobile" aria-label="Ouvrir le menu" data-menu-toggle><i class="ph ph-list"></i></button>
+  </div>
+  <nav class="mobile-menu" id="menu-mobile" hidden aria-label="Navigation mobile">
+    <a href="index.html">Accueil</a><a href="a-propos.html">À propos</a><a href="services.html">Services</a><a href="galerie.html">Galerie</a><a href="contact.html">Contact</a>
+  </nav>
+</header>
+<main id="main" class="page">
+  <header class="wrap page-head">
+    <h6 class="kicker">Contact</h6>
+    <h1 class="h-page">Parlons de votre projet.</h1>
+    <p class="lead">Quelques lignes suffisent pour commencer.</p>
+  </header>
+  <section class="wrap contact-split">
+    <form class="contact-form" action="#" method="post" enctype="multipart/form-data">
+      <div class="form-row">
+        <div class="field"><label for="nom">Nom</label><input class="input" id="nom" name="nom" placeholder="Prénom et nom" required></div>
+        <div class="field"><label for="email">Email</label><input class="input" id="email" name="email" type="email" placeholder="vous@exemple.fr" required></div>
+      </div>
+      <div class="field">
+        <label for="type-1">Type de projet</label>
+        <div class="seg">
+          <label class="seg-opt"><input type="radio" id="type-1" name="type" value="piece-unique" checked><span>Pièce unique</span></label>
+          <label class="seg-opt"><input type="radio" name="type" value="petite-serie"><span>Petite série</span></label>
+          <label class="seg-opt"><input type="radio" name="type" value="modelisation"><span>Modélisation</span></label>
+          <label class="seg-opt"><input type="radio" name="type" value="autre"><span>Je ne sais pas</span></label>
+        </div>
+      </div>
+      <div class="field"><label for="message">Votre projet</label><textarea class="input" id="message" name="message" placeholder="Ce que vous voulez faire imprimer, les dimensions si vous les connaissez, le délai souhaité." required></textarea></div>
+      <div class="submit-row">
+        <button class="btn btn-primary btn-lg" type="submit">Envoyer ma demande</button>
+        <span class="text-muted">Réponse rapide, circuit court.</span>
+      </div>
+    </form>
+    <aside class="aside">
+      <div>
+        <h6 class="kicker">Nous joindre</h6>
+        <ul class="contact-list">
+          <li><i class="ph ph-envelope-simple"></i><a href="mailto:bonjour@lobos.fr">bonjour@lobos.fr</a></li>
+          <li><i class="ph ph-phone"></i><a href="tel:+33561000000">05 61 00 00 00</a></li>
+          <li><i class="ph ph-map-pin"></i><span>12 rue des Ateliers<br>31000 Toulouse</span></li>
+        </ul>
+      </div>
+      <hr class="hr">
+      <div>
+        <h6 class="kicker">Atelier ouvert</h6>
+        <ul class="contact-list plain">
+          <li>Lundi – vendredi · 9h – 18h</li>
+          <li>Samedi · sur rendez-vous</li>
+        </ul>
+      </div>
+      <div class="map-slot"><span>plan / carte statique</span></div>
+    </aside>
+  </section>
+</main>
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <div class="footer-brand">
+      <span class="nav-brand"><span class="logo-mark" aria-hidden="true"></span><span class="wordmark">Lobos<span class="dot">.</span></span></span>
+      <p class="text-muted">Impression 3D à la demande.</p>
+    </div>
+    <div class="footer-col">
+      <h6>Pages</h6>
+      <a href="a-propos.html">À propos</a><a href="services.html">Services</a><a href="galerie.html">Galerie</a><a href="contact.html">Contact</a>
+    </div>
+    <div class="footer-col">
+      <h6>Contact</h6>
+      <span>bonjour@lobos.fr</span><span>05 61 00 00 00</span><span class="text-muted">12 rue des Ateliers, Toulouse</span>
+    </div>
+  </div>
+</footer>
+<script src="js/app.js"></script>
+</body>
+</html>

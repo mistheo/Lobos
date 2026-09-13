@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Impression 3D à Toulouse · Lobos</title>
+<meta name="description" content="Lobos imprime vos pièces en 3D : filament, résine, modélisation. Réponse rapide et circuit court.">
+<script>(function(){var m=document.cookie.match(/(?:^|; )lobos-theme=([^;]*)/);if(m&&m[1]==='light')document.documentElement.dataset.theme='light';})();</script>
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/nocturne.css">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+<link rel="stylesheet" href="css/lobos.css">
+<script type="module" src="js/hero.js"></script>
+</head>
+<body>
+<a class="skip" href="#main">Aller au contenu</a>
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="nav-brand" href="index.html"><span class="logo-mark" aria-hidden="true"></span><span class="wordmark">Lobos<span class="dot">.</span></span></a>
+    <nav class="nav-links" aria-label="Navigation principale">
+      <a href="index.html" aria-current="page">Accueil</a>
+      <a href="a-propos.html">À propos</a>
+      <a href="services.html">Services</a>
+      <a href="galerie.html">Galerie</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <button class="btn btn-secondary btn-icon theme-toggle" type="button" aria-label="Basculer entre thème clair et sombre" data-theme-toggle>
+      <i class="ph ph-sun" data-icon-dark></i><i class="ph ph-moon" data-icon-light></i>
+    </button>
+    <button class="btn btn-secondary btn-icon burger" type="button" aria-expanded="false" aria-controls="menu-mobile" aria-label="Ouvrir le menu" data-menu-toggle><i class="ph ph-list"></i></button>
+  </div>
+  <nav class="mobile-menu" id="menu-mobile" hidden aria-label="Navigation mobile">
+    <a href="index.html">Accueil</a><a href="a-propos.html">À propos</a><a href="services.html">Services</a><a href="galerie.html">Galerie</a><a href="contact.html">Contact</a>
+  </nav>
+</header>
+<main id="main" class="page">
+  <section class="hero">
+    <canvas id="hero-canvas" aria-hidden="true"></canvas>
+    <div class="hero-grid" aria-hidden="true"></div>
+    <div class="wrap hero-inner">
+      <h6 class="kicker">Impression 3D · particuliers et professionnels</h6>
+      <h1>Vos idées, imprimées en trois dimensions.</h1>
+      <p class="lead">Un service simple et modulable. Envoyez un fichier, une photo ou une esquisse : nous vous répondons avec un devis et un délai.</p>
+      <div class="actions">
+        <a class="btn btn-primary btn-lg" href="contact.html">Discuter de mon projet</a>
+        <a class="btn btn-secondary btn-lg" href="services.html">Voir les projets</a>
+      </div>
+      <hr class="hr hero-rule">
+      <ul class="points">
+        <li><span class="num">01</span><p>Réponse rapide et circuit court, sans engagement.</p></li>
+        <li><span class="num">02</span><p>Filament ou résine, selon l’usage de la pièce.</p></li>
+        <li><span class="num">03</span><p>De la pièce unique à la petite série.</p></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="wrap section">
+    <h2>Ce que nous faisons</h2>
+    <div class="grid-3">
+      <article class="card elev-sm">
+        <div class="card-kicker">Service</div>
+        <i class="ph ph-cube card-icon"></i>
+        <h3 class="card-title">Impression filament (FDM)</h3>
+        <p class="card-body">PLA, PETG, TPU souple. Volume jusqu’à 300 × 300 × 400 mm.</p>
+      </article>
+      <article class="card elev-sm">
+        <div class="card-kicker">Service</div>
+        <i class="ph ph-drop card-icon"></i>
+        <h3 class="card-title">Impression résine (SLA)</h3>
+        <p class="card-body">Couches de 25 µm pour les pièces de détail et les figurines.</p>
+      </article>
+      <article class="card elev-sm">
+        <div class="card-kicker">Service</div>
+        <i class="ph ph-compass-tool card-icon"></i>
+        <h3 class="card-title">Modélisation 3D</h3>
+        <p class="card-body">Nous dessinons la pièce à partir de mesures, d’un plan ou d’une photo.</p>
+      </article>
+    </div>
+    <a class="btn btn-ghost" href="services.html">Tous les services <i class="ph ph-arrow-right"></i></a>
+  </section>
+
+  <section class="wrap section">
+    <div class="card-head"><h2>Projets phares</h2><span class="tag tag-outline mono-tag">CMS · case « projet phare »</span></div>
+    <p class="section-lead">Une sélection de trois projets. Dans PagesCMS, cochez « projet phare » sur une fiche pour qu’elle apparaisse ici ; tous les autres projets restent visibles dans la galerie.</p>
+    <div class="grid-3">
+      <article class="card elev-sm">
+        <div class="ph-slot ratio-43"><span>photo projet</span></div>
+        <div class="card-kicker">Maquettes</div>
+        <h3 class="card-title">Maquette d'architecte 1:100</h3>
+        <p class="card-body">Six bâtiments en résine, assemblés et peints pour une présentation.</p>
+        <a class="btn btn-primary btn-block" href="contact.html">Discuter de mon projet</a>
+      </article>
+      <article class="card elev-sm">
+        <div class="ph-slot ratio-43"><span>photo projet</span></div>
+        <div class="card-kicker">Réparation</div>
+        <h3 class="card-title">Manivelle de volet roulant</h3>
+        <p class="card-body">Pièce cassée remodelée en PETG, plus épaisse que l'originale.</p>
+        <a class="btn btn-primary btn-block" href="contact.html">Discuter de mon projet</a>
+      </article>
+      <article class="card elev-sm">
+        <div class="ph-slot ratio-43"><span>photo projet</span></div>
+        <div class="card-kicker">Professionnels</div>
+        <h3 class="card-title">Gabarits d'atelier</h3>
+        <p class="card-body">Quarante pièces identiques pour un menuisier, en deux semaines.</p>
+        <a class="btn btn-primary btn-block" href="contact.html">Discuter de mon projet</a>
+      </article>
+    </div>
+    <a class="btn btn-ghost" href="galerie.html">Voir toute la galerie <i class="ph ph-arrow-right"></i></a>
+  </section>
+  <section class="band">
+  <div class="wrap band-inner">
+    <div><h2>Un projet en tête ?</h2><p>Décrivez-le en quelques lignes. Nous revenons vers vous avec une faisabilité, un prix et un délai.</p></div>
+    <a class="btn band-btn" href="contact.html">Nous écrire <i class="ph ph-arrow-right"></i></a>
+  </div>
+</section>
+</main>
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <div class="footer-brand">
+      <span class="nav-brand"><span class="logo-mark" aria-hidden="true"></span><span class="wordmark">Lobos<span class="dot">.</span></span></span>
+      <p class="text-muted">Impression 3D à la demande.</p>
+    </div>
+    <div class="footer-col">
+      <h6>Pages</h6>
+      <a href="a-propos.html">À propos</a><a href="services.html">Services</a><a href="galerie.html">Galerie</a><a href="contact.html">Contact</a>
+    </div>
+    <div class="footer-col">
+      <h6>Contact</h6>
+      <span>bonjour@lobos.fr</span><span>05 61 00 00 00</span><span class="text-muted">12 rue des Ateliers, Toulouse</span>
+    </div>
+  </div>
+</footer>
+<script src="js/app.js"></script>
+</body>
+</html>
