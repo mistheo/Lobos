@@ -8,10 +8,6 @@ Nocturne, un menu mobile en JS natif, three.js pour le fond animé du hero.
 
     site/
       index.html        Coquille unique : header/footer + les 5 <section data-view="…">
-      a-propos.html      Redirection vers index.html#a-propos (compat anciens liens)
-      services.html      Redirection vers index.html#services
-      galerie.html       Redirection vers index.html#galerie
-      contact.html       Redirection vers index.html#contact
       assets/logo.svg    Logo Lobos (affiché en masque CSS : il prend la couleur du thème)
       assets/favicon.svg Favicon (logo en violet accent)
       css/nocturne.css   Tokens et composants du design system (ne pas modifier ici)
@@ -22,6 +18,7 @@ Nocturne, un menu mobile en JS natif, three.js pour le fond animé du hero.
       js/router.js       Bascule entre les vues, hash routing, cache le rendu par section
       js/data.js         fetch() des JSON de site/data/
       js/render.js        Gabarits HTML pilotés par les données du CMS
+      js/marquee.js       Carrousel portfolio : défilement auto + glisser à la souris/au doigt
       content/           Contenus édités via PagesCMS (source de vérité éditoriale)
       data/              JSON générés depuis content/ — NE PAS ÉDITER À LA MAIN (voir plus bas)
     .pages.yml           Configuration PagesCMS (à la racine du dépôt)
@@ -57,6 +54,15 @@ rendu pour éviter le flash. Les couleurs passent par `html[data-theme="light"]`
    Le doublon `aria-hidden="true"` du carrousel est généré automatiquement par `render.js`.
 
 Les collections **Services**, **Atouts (accueil)**, **Équipe** et la page **À propos** fonctionnent de la même façon.
+
+Si la collection **Portfolio** est vide, la section « Projets phares » (accueil) et le
+carrousel de la galerie restent masqués plutôt que de s'afficher vides (`js/router.js`).
+
+## Carrousel du portfolio
+
+Le carrousel de la galerie défile automatiquement et se met en pause au survol ; `js/marquee.js`
+permet en plus de le faire glisser à la souris (cliquer-glisser) ou au doigt sur écran tactile.
+Le défilement respecte `prefers-reduced-motion`.
 
 ## Déployer
 
