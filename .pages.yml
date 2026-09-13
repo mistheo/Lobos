@@ -1,0 +1,207 @@
+# Configuration Pages CMS — https://pagescms.org/docs/
+#
+# Le site (site/) est statique et sans étape de build : les fichiers HTML restent
+# la source de vérité affichée, les collections ci-dessous sont le contenu éditorial
+# à câbler dedans (voir site/README.md, section « Ajouter un projet au portfolio »).
+
+media:
+  - name: uploads
+    label: Photos
+    input: site/assets/uploads
+    output: assets/uploads
+    categories: [image]
+    rename: safe
+
+content:
+  # Collection « Portfolio » : un fichier par projet dans site/content/projets/.
+  - name: projets
+    label: Portfolio
+    type: collection
+    path: site/content/projets
+    format: yaml-frontmatter
+    filename: "{titre}.md"
+    fields:
+      - name: titre
+        label: Titre
+        type: string
+        required: true
+      - name: categorie
+        label: Catégorie
+        type: select
+        required: true
+        options:
+          values: [Particuliers, Professionnels, Réparation, Maquettes]
+      - name: image
+        label: Photo
+        type: image
+        options:
+          media: uploads
+      - name: description
+        label: Description
+        type: text
+        required: true
+      - name: phare
+        label: Projet phare
+        type: boolean
+        default: false
+        description: "Coché : le projet apparaît aussi dans « Projets phares » sur l'accueil (trois au maximum, cf. grille de la page d'accueil)."
+      - name: ordre
+        label: Ordre
+        type: number
+        options:
+          min: 1
+        description: "Position dans la galerie (1 = premier)."
+    view:
+      primary: titre
+      fields: [titre, categorie, phare, ordre]
+      sort: [ordre, titre]
+      search: [titre, categorie, description]
+      default:
+        sort: ordre
+        order: asc
+
+  # Collection « Services » : cartes de la page services.html (et de l'accueil).
+  - name: services
+    label: Services
+    type: collection
+    path: site/content/services
+    format: yaml-frontmatter
+    filename: "{titre}.md"
+    fields:
+      - name: titre
+        label: Titre
+        type: string
+        required: true
+      - name: icone
+        label: Icône (Phosphor)
+        type: string
+        required: true
+        description: "Nom de l'icône Phosphor sans le préfixe ph-, ex. cube, drop, compass-tool, wrench, stack, paint-brush-broad."
+      - name: description
+        label: Description
+        type: text
+        required: true
+      - name: ordre
+        label: Ordre
+        type: number
+        options:
+          min: 1
+    view:
+      primary: titre
+      fields: [titre, ordre]
+      sort: [ordre, titre]
+      default:
+        sort: ordre
+        order: asc
+
+  # Collection « Atouts (accueil) » : les trois points de la section hero de l'accueil.
+  - name: atouts
+    label: Atouts (accueil)
+    type: collection
+    path: site/content/atouts
+    format: yaml-frontmatter
+    filename: "{titre}.md"
+    fields:
+      - name: titre
+        label: Texte
+        type: string
+        required: true
+        description: "Repris tel quel dans la liste à puces du hero de l'accueil."
+      - name: ordre
+        label: Ordre
+        type: number
+        options:
+          min: 1
+    view:
+      primary: titre
+      fields: [titre, ordre]
+      sort: [ordre]
+      default:
+        sort: ordre
+        order: asc
+
+  # Collection « Équipe » : fiches affichées sur la page à propos.
+  - name: equipe
+    label: Équipe
+    type: collection
+    path: site/content/equipe
+    format: yaml-frontmatter
+    filename: "{nom}.md"
+    fields:
+      - name: nom
+        label: Nom
+        type: string
+        required: true
+      - name: role
+        label: Rôle
+        type: string
+        required: true
+      - name: photo
+        label: Photo
+        type: image
+        options:
+          media: uploads
+      - name: ordre
+        label: Ordre
+        type: number
+        options:
+          min: 1
+    view:
+      primary: nom
+      fields: [nom, role, ordre]
+      sort: [ordre]
+      default:
+        sort: ordre
+        order: asc
+
+  # Page « À propos » : fichier unique site/content/a-propos.md.
+  - name: a_propos
+    label: À propos
+    type: file
+    path: site/content/a-propos.md
+    format: yaml-frontmatter
+    fields:
+      - name: titre
+        label: Accroche
+        type: string
+        required: true
+      - name: photo
+        label: Photo de l'atelier
+        type: image
+        options:
+          media: uploads
+      - name: valeurs
+        label: Valeurs
+        type: object
+        list:
+          min: 3
+          max: 3
+          collapsible:
+            summary: "{titre}"
+        description: "Les trois cartes de la section valeurs (grille à 3 colonnes fixe)."
+        fields:
+          - name: titre
+            label: Titre
+            type: string
+            required: true
+          - name: icone
+            label: Icône (Phosphor)
+            type: string
+            required: true
+          - name: texte
+            label: Texte
+            type: text
+            required: true
+      - name: body
+        label: Texte de présentation
+        type: rich-text
+        required: true
+
+settings:
+  commit:
+    identity: app
+    templates:
+      create: "content: ajouter {path}"
+      update: "content: modifier {path}"
+      delete: "content: supprimer {path}"
+      rename: "content: renommer {oldPath} en {newPath}"
