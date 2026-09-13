@@ -10,19 +10,21 @@
 <link rel="stylesheet" href="css/nocturne.css">
 <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
 <link rel="stylesheet" href="css/lobos.css">
+<script src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js"></script>
 <script type="module" src="js/hero.js"></script>
+<script type="module" src="js/main.js"></script>
 </head>
 <body>
 <a class="skip" href="#main">Aller au contenu</a>
 <header class="site-header">
   <div class="wrap nav">
-    <a class="nav-brand" href="index.html"><span class="logo-mark" aria-hidden="true"></span><span class="wordmark">Lobos<span class="dot">.</span></span></a>
+    <a class="nav-brand" href="#accueil"><span class="logo-mark" aria-hidden="true"></span><span class="wordmark">Lobos<span class="dot">.</span></span></a>
     <nav class="nav-links" aria-label="Navigation principale">
-      <a href="index.html" aria-current="page">Accueil</a>
-      <a href="a-propos.html">À propos</a>
-      <a href="services.html">Services</a>
-      <a href="galerie.html">Galerie</a>
-      <a href="contact.html">Contact</a>
+      <a href="#accueil" aria-current="page">Accueil</a>
+      <a href="#a-propos">À propos</a>
+      <a href="#services">Services</a>
+      <a href="#galerie">Galerie</a>
+      <a href="#contact">Contact</a>
     </nav>
     <button class="btn btn-secondary btn-icon theme-toggle" type="button" aria-label="Basculer entre thème clair et sombre" data-theme-toggle>
       <i class="ph ph-sun" data-icon-dark></i><i class="ph ph-moon" data-icon-light></i>
@@ -30,10 +32,12 @@
     <button class="btn btn-secondary btn-icon burger" type="button" aria-expanded="false" aria-controls="menu-mobile" aria-label="Ouvrir le menu" data-menu-toggle><i class="ph ph-list"></i></button>
   </div>
   <nav class="mobile-menu" id="menu-mobile" hidden aria-label="Navigation mobile">
-    <a href="index.html">Accueil</a><a href="a-propos.html">À propos</a><a href="services.html">Services</a><a href="galerie.html">Galerie</a><a href="contact.html">Contact</a>
+    <a href="#accueil" aria-current="page">Accueil</a><a href="#a-propos">À propos</a><a href="#services">Services</a><a href="#galerie">Galerie</a><a href="#contact">Contact</a>
   </nav>
 </header>
-<main id="main" class="page">
+<main id="main">
+
+<section class="page" data-view="accueil">
   <section class="hero">
     <canvas id="hero-canvas" aria-hidden="true"></canvas>
     <div class="hero-grid" aria-hidden="true"></div>
@@ -42,78 +46,164 @@
       <h1>Vos idées, imprimées en trois dimensions.</h1>
       <p class="lead">Un service simple et modulable. Envoyez un fichier, une photo ou une esquisse : nous vous répondons avec un devis et un délai.</p>
       <div class="actions">
-        <a class="btn btn-primary btn-lg" href="contact.html">Discuter de mon projet</a>
-        <a class="btn btn-secondary btn-lg" href="services.html">Voir les projets</a>
+        <a class="btn btn-primary btn-lg" href="#contact">Discuter de mon projet</a>
+        <a class="btn btn-secondary btn-lg" href="#services">Voir les projets</a>
       </div>
       <hr class="hr hero-rule">
       <span class="tag tag-outline mono-tag">CMS · collection « atouts »</span>
-      <ul class="points">
-        <li><span class="num">01</span><p>Réponse rapide et circuit court, sans engagement.</p></li>
-        <li><span class="num">02</span><p>Filament ou résine, selon l’usage de la pièce.</p></li>
-        <li><span class="num">03</span><p>De la pièce unique à la petite série.</p></li>
-      </ul>
+      <ul class="points" data-slot="atouts"></ul>
     </div>
   </section>
 
   <section class="wrap section">
     <div class="card-head"><h2>Ce que nous faisons</h2><span class="tag tag-outline mono-tag">CMS · collection « services »</span></div>
-    <div class="grid-3">
-      <article class="card elev-sm">
-        <div class="card-kicker">Service</div>
-        <i class="ph ph-cube card-icon"></i>
-        <h3 class="card-title">Impression filament (FDM)</h3>
-        <p class="card-body">PLA, PETG, TPU souple. Volume jusqu’à 300 × 300 × 400 mm.</p>
-      </article>
-      <article class="card elev-sm">
-        <div class="card-kicker">Service</div>
-        <i class="ph ph-drop card-icon"></i>
-        <h3 class="card-title">Impression résine (SLA)</h3>
-        <p class="card-body">Couches de 25 µm pour les pièces de détail et les figurines.</p>
-      </article>
-      <article class="card elev-sm">
-        <div class="card-kicker">Service</div>
-        <i class="ph ph-compass-tool card-icon"></i>
-        <h3 class="card-title">Modélisation 3D</h3>
-        <p class="card-body">Nous dessinons la pièce à partir de mesures, d’un plan ou d’une photo.</p>
-      </article>
-    </div>
-    <a class="btn btn-ghost" href="services.html">Tous les services <i class="ph ph-arrow-right"></i></a>
+    <div class="grid-3" data-slot="services-preview"></div>
+    <a class="btn btn-ghost" href="#services">Tous les services <i class="ph ph-arrow-right"></i></a>
   </section>
 
   <section class="wrap section">
     <div class="card-head"><h2>Projets phares</h2><span class="tag tag-outline mono-tag">CMS · case « projet phare »</span></div>
     <p class="section-lead">Une sélection de trois projets. Dans PagesCMS, cochez « projet phare » sur une fiche pour qu’elle apparaisse ici ; tous les autres projets restent visibles dans la galerie.</p>
-    <div class="grid-3">
-      <article class="card elev-sm">
-        <div class="ph-slot ratio-43"><span>photo projet</span></div>
-        <div class="card-kicker">Maquettes</div>
-        <h3 class="card-title">Maquette d'architecte 1:100</h3>
-        <p class="card-body">Six bâtiments en résine, assemblés et peints pour une présentation.</p>
-        <a class="btn btn-primary btn-block" href="contact.html">Discuter de mon projet</a>
-      </article>
-      <article class="card elev-sm">
-        <div class="ph-slot ratio-43"><span>photo projet</span></div>
-        <div class="card-kicker">Réparation</div>
-        <h3 class="card-title">Manivelle de volet roulant</h3>
-        <p class="card-body">Pièce cassée remodelée en PETG, plus épaisse que l'originale.</p>
-        <a class="btn btn-primary btn-block" href="contact.html">Discuter de mon projet</a>
-      </article>
-      <article class="card elev-sm">
-        <div class="ph-slot ratio-43"><span>photo projet</span></div>
-        <div class="card-kicker">Professionnels</div>
-        <h3 class="card-title">Gabarits d'atelier</h3>
-        <p class="card-body">Quarante pièces identiques pour un menuisier, en deux semaines.</p>
-        <a class="btn btn-primary btn-block" href="contact.html">Discuter de mon projet</a>
-      </article>
-    </div>
-    <a class="btn btn-ghost" href="galerie.html">Voir toute la galerie <i class="ph ph-arrow-right"></i></a>
+    <div class="grid-3" data-slot="projets-phares"></div>
+    <a class="btn btn-ghost" href="#galerie">Voir toute la galerie <i class="ph ph-arrow-right"></i></a>
   </section>
   <section class="band">
-  <div class="wrap band-inner">
-    <div><h2>Un projet en tête ?</h2><p>Décrivez-le en quelques lignes. Nous revenons vers vous avec une faisabilité, un prix et un délai.</p></div>
-    <a class="btn band-btn" href="contact.html">Nous écrire <i class="ph ph-arrow-right"></i></a>
-  </div>
+    <div class="wrap band-inner">
+      <div><h2>Un projet en tête ?</h2><p>Décrivez-le en quelques lignes. Nous revenons vers vous avec une faisabilité, un prix et un délai.</p></div>
+      <a class="btn band-btn" href="#contact">Nous écrire <i class="ph ph-arrow-right"></i></a>
+    </div>
+  </section>
 </section>
+
+<section class="page" data-view="a-propos" hidden>
+  <header class="wrap page-head">
+    <h6 class="kicker">À propos</h6>
+    <h1 class="h-page" data-slot="a-propos-titre">Un atelier, deux imprimantes, et l’envie de rendre la 3D accessible.</h1>
+  </header>
+  <section class="wrap split">
+    <div>
+      <span class="tag tag-outline mono-tag">CMS · page « à propos »</span>
+      <div data-slot="a-propos-body"></div>
+      <hr class="hr">
+      <div class="grid-3 values" data-slot="a-propos-valeurs"></div>
+    </div>
+    <aside class="aside">
+      <div class="card elev-sm team">
+        <div class="card-head"><div class="card-kicker">L’équipe</div><span class="tag tag-outline mono-tag">CMS</span></div>
+        <div data-slot="equipe"></div>
+      </div>
+      <div class="ph-slot ratio-45"><span>photo de l’atelier<br>4:5</span></div>
+    </aside>
+  </section>
+  <section class="band">
+    <div class="wrap band-inner">
+      <div><h2>Venez voir l’atelier.</h2></div>
+      <a class="btn band-btn" href="#contact">Nous écrire <i class="ph ph-arrow-right"></i></a>
+    </div>
+  </section>
+</section>
+
+<section class="page" data-view="services" hidden>
+  <header class="wrap page-head">
+    <h6 class="kicker">Services</h6>
+    <h1 class="h-page">Un service à la carte, du fichier à la pièce finie.</h1>
+    <p class="lead">Vous choisissez ce dont vous avez besoin : nous pouvons imprimer votre fichier, le corriger, ou dessiner la pièce depuis zéro.</p>
+    <span class="tag tag-outline mono-tag">CMS · collection « services »</span>
+  </header>
+  <section class="wrap">
+    <hr class="hr">
+    <div class="service-list" data-slot="services"></div>
+  </section>
+  <section class="wrap section">
+    <div class="card-head"><h2>Portfolio</h2><span class="tag tag-outline mono-tag">CMS · collection « projets »</span></div>
+    <p class="section-lead">Réparations, maquettes, séries d’atelier : la galerie rassemble tous les projets, avec leurs photos et leur description.</p>
+    <a class="btn btn-primary btn-lg galerie-link" href="#galerie">Voir la galerie <i class="ph ph-arrow-right"></i></a>
+  </section>
+  <section class="band">
+    <div class="wrap band-inner">
+      <div><h2>Votre projet ne ressemble à aucun de ceux-là ? Écrivez-nous quand même.</h2></div>
+      <a class="btn band-btn" href="#contact">Nous écrire <i class="ph ph-arrow-right"></i></a>
+    </div>
+  </section>
+</section>
+
+<section class="page" data-view="galerie" hidden>
+  <header class="wrap page-head">
+    <h6 class="kicker">Galerie</h6>
+    <h1 class="h-page">Tous les projets sortis de l’atelier.</h1>
+    <p class="lead">Réparations, maquettes, séries d’atelier, pièces sur mesure. Les projets cochés « phare » dans le CMS apparaissent aussi sur l’accueil.</p>
+    <span class="tag tag-outline mono-tag">CMS · collection « projets »</span>
+  </header>
+  <section class="wrap section">
+    <div class="filters">
+      <button class="tag tag-accent" type="button">Tous</button>
+      <button class="tag tag-neutral" type="button">Particuliers</button>
+      <button class="tag tag-neutral" type="button">Professionnels</button>
+      <button class="tag tag-neutral" type="button">Réparation</button>
+      <button class="tag tag-neutral" type="button">Maquettes</button>
+    </div>
+  </section>
+  <div class="marquee" data-marquee>
+    <div class="marquee-track" data-slot="galerie"></div>
+  </div>
+  <p class="wrap mono-note">Défilement continu de droite à gauche · pause au survol · ordre géré dans le CMS</p>
+  <section class="band">
+    <div class="wrap band-inner">
+      <div><h2>Votre projet ne ressemble à aucun de ceux-là ? Écrivez-nous quand même.</h2></div>
+      <a class="btn band-btn" href="#contact">Nous écrire <i class="ph ph-arrow-right"></i></a>
+    </div>
+  </section>
+</section>
+
+<section class="page" data-view="contact" hidden>
+  <header class="wrap page-head">
+    <h6 class="kicker">Contact</h6>
+    <h1 class="h-page">Parlons de votre projet.</h1>
+    <p class="lead">Quelques lignes suffisent pour commencer.</p>
+  </header>
+  <section class="wrap contact-split">
+    <form class="contact-form" action="#" method="post" enctype="multipart/form-data">
+      <div class="form-row">
+        <div class="field"><label for="nom">Nom</label><input class="input" id="nom" name="nom" placeholder="Prénom et nom" required></div>
+        <div class="field"><label for="email">Email</label><input class="input" id="email" name="email" type="email" placeholder="vous@exemple.fr" required></div>
+      </div>
+      <div class="field">
+        <label for="type-1">Type de projet</label>
+        <div class="seg">
+          <label class="seg-opt"><input type="radio" id="type-1" name="type" value="piece-unique" checked><span>Pièce unique</span></label>
+          <label class="seg-opt"><input type="radio" name="type" value="petite-serie"><span>Petite série</span></label>
+          <label class="seg-opt"><input type="radio" name="type" value="modelisation"><span>Modélisation</span></label>
+          <label class="seg-opt"><input type="radio" name="type" value="autre"><span>Je ne sais pas</span></label>
+        </div>
+      </div>
+      <div class="field"><label for="message">Votre projet</label><textarea class="input" id="message" name="message" placeholder="Ce que vous voulez faire imprimer, les dimensions si vous les connaissez, le délai souhaité." required></textarea></div>
+      <div class="submit-row">
+        <button class="btn btn-primary btn-lg" type="submit">Envoyer ma demande</button>
+        <span class="text-muted">Réponse rapide, circuit court.</span>
+      </div>
+    </form>
+    <aside class="aside">
+      <div>
+        <h6 class="kicker">Nous joindre</h6>
+        <ul class="contact-list">
+          <li><i class="ph ph-envelope-simple"></i><a href="mailto:bonjour@lobos.fr">bonjour@lobos.fr</a></li>
+          <li><i class="ph ph-phone"></i><a href="tel:+33561000000">05 61 00 00 00</a></li>
+          <li><i class="ph ph-map-pin"></i><span>12 rue des Ateliers<br>31000 Toulouse</span></li>
+        </ul>
+      </div>
+      <hr class="hr">
+      <div>
+        <h6 class="kicker">Atelier ouvert</h6>
+        <ul class="contact-list plain">
+          <li>Lundi – vendredi · 9h – 18h</li>
+          <li>Samedi · sur rendez-vous</li>
+        </ul>
+      </div>
+      <div class="map-slot"><span>plan / carte statique</span></div>
+    </aside>
+  </section>
+</section>
+
 </main>
 <footer class="site-footer">
   <div class="wrap footer-inner">
@@ -123,7 +213,7 @@
     </div>
     <div class="footer-col">
       <h6>Pages</h6>
-      <a href="a-propos.html">À propos</a><a href="services.html">Services</a><a href="galerie.html">Galerie</a><a href="contact.html">Contact</a>
+      <a href="#a-propos">À propos</a><a href="#services">Services</a><a href="#galerie">Galerie</a><a href="#contact">Contact</a>
     </div>
     <div class="footer-col">
       <h6>Contact</h6>

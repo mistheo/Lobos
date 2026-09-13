@@ -1,0 +1,38 @@
+name: Générer les données du CMS
+
+# Régénère site/data/*.json à partir de site/content/** (édité via PagesCMS)
+# et commit le résultat, pour que le site (site/js/data.js) reflète toujours
+# le contenu le plus récent sans étape manuelle.
+on:
+  push:
+    branches: [main]
+    paths:
+      - "site/content/**"
+      - "scripts/build-content.mjs"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-content:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - run: npm install
+
+      - run: npm run build:content
+
+      - name: Commit les JSON régénérés
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add site/data
+          git diff --cached --quiet && echo "Rien à committer." && exit 0
+          git commit -m "content: régénérer site/data depuis site/content"
+          git push
