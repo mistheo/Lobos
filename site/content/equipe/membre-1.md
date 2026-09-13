@@ -1,0 +1,6 @@
+---
+nom: Prénom Nom
+role: Impression et finitions
+photo: ''
+ordre: 1
+---
