@@ -106,7 +106,7 @@ if (canvas) {
   function frame() {
     requestAnimationFrame(frame);
     if (!reduced) {
-      t += 0.004;
+      t += 0.007;
       // la rotation continue indéfiniment, y compris une fois le logo imprimé
       group.rotation.y = t;
       group.rotation.x = Math.sin(t * 0.7) * 0.18;
