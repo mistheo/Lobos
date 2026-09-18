@@ -87,7 +87,7 @@ if (canvas) {
     });
 
   let t = 0;
-  const cycle = 5.2; // secondes : construction du logo puis pause avant la reprise
+  const cycle = 0.7; // secondes : construction du logo puis pause avant la reprise
   const buildFraction = 0.72;
   function frame() {
     requestAnimationFrame(frame);
