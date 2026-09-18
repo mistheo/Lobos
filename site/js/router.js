@@ -8,7 +8,7 @@ import { initMarquee } from './marquee.js';
 
 const VIEWS = ['accueil', 'a-propos', 'services', 'galerie', 'contact'];
 const TITLES = {
-  'accueil': 'Impression 3D à Toulouse · Lobos',
+  'accueil': 'Impression 3D à Lyon · Lobos',
   'a-propos': 'À propos · Lobos',
   'services': 'Services et portfolio · Lobos',
   'galerie': 'Galerie · Lobos',
@@ -69,13 +69,13 @@ function showView(id) {
     const active = section.dataset.view === id;
     section.hidden = !active;
     if (active) {
-      // relance l'animation .page-in (déjà utilisée pour les changements de page)
-      section.classList.remove('page');
+      // relance l'animation animate-page-in (déjà utilisée pour les changements de page)
+      section.classList.remove('animate-page-in');
       void section.offsetWidth;
-      section.classList.add('page');
+      section.classList.add('animate-page-in');
     }
   });
-  document.querySelectorAll('.nav-links a, .mobile-menu a').forEach((a) => {
+  document.querySelectorAll('[data-nav-links] a, #menu-mobile a').forEach((a) => {
     const target = a.getAttribute('href').replace('#', '') || 'accueil';
     if (target === id) a.setAttribute('aria-current', 'page');
     else a.removeAttribute('aria-current');
