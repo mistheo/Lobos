@@ -1,4 +1,4 @@
 ---
-titre: Réponse rapide et circuit court, sans engagement.
+titre: Envoyer votre idée
 ordre: 1
 ---
