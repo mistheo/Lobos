@@ -42,8 +42,6 @@ if (canvas) {
   const printPlane = new THREE.Plane(new THREE.Vector3(0, -1, 0), 0);
   let printMinY = -1.6;
   let printMaxY = 1.6;
-  let printRing;
-  let printNozzle;
   let printStartT = null;
 
   // extrude le tracé du logo en un maillage low-poly pour le rendu en fil de fer
@@ -99,25 +97,6 @@ if (canvas) {
       );
       group.add(layers);
 
-      // anneau lumineux qui matérialise la "tête d'impression" au niveau du plan de coupe
-      const ringRadius = Math.max(bboxSize.x, bboxSize.y) * scale * 0.62;
-      printRing = new THREE.Mesh(
-        new THREE.RingGeometry(ringRadius * 0.93, ringRadius, 40),
-        new THREE.MeshBasicMaterial({ color: accent, transparent: true, opacity: 0, side: THREE.DoubleSide })
-      );
-      printRing.rotation.x = -Math.PI / 2;
-      printRing.visible = !reduced;
-      scene.add(printRing);
-
-      // buse d'impression stylisée qui suit le plan de coupe pendant la construction
-      printNozzle = new THREE.Mesh(
-        new THREE.ConeGeometry(ringRadius * 0.22, ringRadius * 0.5, 4),
-        new THREE.MeshBasicMaterial({ color: accent, transparent: true, opacity: 0 })
-      );
-      printNozzle.rotation.x = Math.PI;
-      printNozzle.visible = !reduced;
-      scene.add(printNozzle);
-
       // démarre le chrono d'impression seulement une fois le maillage prêt
       printStartT = t;
     });
@@ -136,14 +115,6 @@ if (canvas) {
         const buildT = Math.min((t - printStartT) / buildDuration, 1);
         const revealY = printMinY + (printMaxY - printMinY) * buildT;
         printPlane.constant = revealY;
-        if (printRing) {
-          printRing.position.set(group.position.x, revealY, group.position.z);
-          printRing.material.opacity = buildT < 1 ? 0.55 : 0;
-        }
-        if (printNozzle) {
-          printNozzle.position.set(group.position.x, revealY + printNozzle.geometry.parameters.height * 0.6, group.position.z);
-          printNozzle.material.opacity = buildT < 1 ? 0.8 : 0;
-        }
       }
     }
     renderer.render(scene, camera);
