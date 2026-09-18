@@ -56,6 +56,7 @@
     </script>
     <script type="module" src="js/hero.js"></script>
     <script type="module" src="js/main.js"></script>
+    <script type="module" src="js/contact-upload.js"></script>
   </head>
 
   <body
@@ -614,12 +615,37 @@
                 for="message"
                 >Votre projet</label
               ><textarea
-                class="w-full min-h-[130px] px-[10px] py-[6px] text-sm text-text caret-accent bg-surface border border-divider outline-hidden resize-y hover:border-[color-mix(in_srgb,var(--color-text)_45%,transparent)] focus-visible:border-accent focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-0"
+                class="w-full min-h-[130px] px-[10px] py-[6px] text-sm text-text caret-accent bg-surface border border-divider outline-hidden resize-y hover:border-[color-mix(in_srgb,var(--color-text)_45%,transparent)] focus-visible:border-accent focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-0 data-[dragover]:border-accent data-[dragover]:bg-[color-mix(in_srgb,var(--color-accent)_8%,transparent)]"
                 id="message"
                 name="message"
                 placeholder="Ce que vous voulez faire imprimer, les dimensions si vous les connaissez, le délai souhaité."
                 required
+                data-file-dropzone
               ></textarea>
+              <p
+                class="mt-2 text-xs text-[color-mix(in_srgb,var(--color-text)_55%,transparent)]"
+              >
+                Glissez-déposez vos fichiers 3D (STL, OBJ, 3MF) ici, ou
+                <button
+                  class="text-accent underline underline-offset-2 cursor-pointer bg-transparent border-0 p-0 outline-hidden focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2"
+                  type="button"
+                  data-file-browse
+                >
+                  parcourez vos fichiers
+                </button>
+                <input
+                  class="sr-only"
+                  type="file"
+                  id="fichiers"
+                  name="fichiers"
+                  multiple
+                  accept=".stl,.obj,.3mf,model/stl,model/obj,model/3mf"
+                />
+              </p>
+              <ul
+                class="mt-2 flex flex-wrap gap-2 empty:hidden"
+                data-file-list
+              ></ul>
             </div>
             <div class="flex items-center gap-6 flex-wrap">
               <button
