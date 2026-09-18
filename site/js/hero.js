@@ -13,6 +13,7 @@ if (canvas) {
   const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
   renderer.setSize(w, h, false);
+  renderer.localClippingEnabled = true;
 
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(42, w / h, 0.1, 100);
@@ -34,6 +35,13 @@ if (canvas) {
   grid.material.opacity = 0.12;
   grid.position.y = -1.9;
   scene.add(grid);
+
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // plan de coupe qui révèle le logo du bas vers le haut, comme une impression 3D en cours
+  const printPlane = new THREE.Plane(new THREE.Vector3(0, -1, 0), 0);
+  let printMinY = -1.6;
+  let printMaxY = 1.6;
 
   // extrude le tracé du logo en un maillage low-poly pour le rendu en fil de fer
   fetch('assets/logo.svg')
@@ -57,19 +65,30 @@ if (canvas) {
       geometry.translate(-center.x, -center.y, -center.z);
       const scale = 2.7 / Math.max(bboxSize.x, bboxSize.y);
       geometry.scale(scale, scale, scale);
+      geometry.computeBoundingBox();
+      printMinY = geometry.boundingBox.min.y * 1.15;
+      printMaxY = geometry.boundingBox.max.y * 1.15;
+      printPlane.constant = reduced ? printMaxY : printMinY;
 
       const logo = wire(geometry, 0.6);
+      logo.material.clippingPlanes = [printPlane];
       group.add(logo);
     });
 
-  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   let t = 0;
+  const cycle = 5.2; // secondes : construction du logo puis pause avant la reprise
+  const buildFraction = 0.72;
   function frame() {
     requestAnimationFrame(frame);
     if (!reduced) {
       t += 0.004;
       group.rotation.y = t;
       group.rotation.x = Math.sin(t * 0.7) * 0.18;
+
+      const progress = (t % cycle) / cycle;
+      const buildT = Math.min(progress / buildFraction, 1);
+      const revealY = printMinY + (printMaxY - printMinY) * buildT;
+      printPlane.constant = revealY;
     }
     renderer.render(scene, camera);
   }
