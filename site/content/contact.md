@@ -5,4 +5,6 @@ adresse: |-
   12 rue des Ateliers
   31000 Lyon
 instagram: ""
+latitude: 45.7578
+longitude: 4.8320
 ---

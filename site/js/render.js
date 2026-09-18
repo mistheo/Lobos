@@ -119,6 +119,29 @@ export function renderFooterContact(contact) {
   return `<span>${escapeHtml(contact.email)}</span><span>${escapeHtml(contact.telephone)}</span><span class="text-muted">${escapeHtml(adresse)}</span>${instagram}`;
 }
 
+// Plan (page contact) : carte Leaflet + tuiles OpenStreetMap (aucune clé API requise).
+// Réutilise la même instance à chaque affichage plutôt que d'en recréer une (Leaflet
+// refuse d'être initialisé deux fois sur le même conteneur).
+let contactMap;
+
+export function renderContactMap(container, contact) {
+  if (!container || typeof L === 'undefined') return;
+  const lat = Number(contact.latitude);
+  const lng = Number(contact.longitude);
+  if (!Number.isFinite(lat) || !Number.isFinite(lng)) return;
+  if (!contactMap) {
+    contactMap = L.map(container, { scrollWheelZoom: false }).setView([lat, lng], 15);
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+      maxZoom: 19,
+    }).addTo(contactMap);
+    L.marker([lat, lng]).addTo(contactMap);
+  }
+  // Le conteneur est masqué (display:none) tant que la vue contact n'est pas affichée :
+  // Leaflet a besoin de connaître sa taille réelle une fois visible pour placer les tuiles.
+  contactMap.invalidateSize();
+}
+
 export function renderAProposBody(bodyMarkdown) {
   const wrap = document.createElement('div');
   wrap.className = 'text-[17px] leading-[1.6]';
