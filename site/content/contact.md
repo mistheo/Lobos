@@ -1,10 +1,9 @@
 ---
-email: bonjour@lobos.fr
-telephone: "05 61 00 00 00"
+email: lobosprint@gmail.com
+telephone: "0766104081"
 adresse: |-
   12 rue des Ateliers
   31000 Lyon
-instagram: ""
 latitude: 45.7578
-longitude: 4.8320
+longitude: 4.832
 ---
