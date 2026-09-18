@@ -42,6 +42,7 @@ if (canvas) {
   const printPlane = new THREE.Plane(new THREE.Vector3(0, -1, 0), 0);
   let printMinY = -1.6;
   let printMaxY = 1.6;
+  let printRing;
 
   // extrude le tracé du logo en un maillage low-poly pour le rendu en fil de fer
   fetch('assets/logo.svg')
@@ -73,6 +74,16 @@ if (canvas) {
       const logo = wire(geometry, 0.6);
       logo.material.clippingPlanes = [printPlane];
       group.add(logo);
+
+      // anneau lumineux qui matérialise la "tête d'impression" au niveau du plan de coupe
+      const ringRadius = Math.max(bboxSize.x, bboxSize.y) * scale * 0.62;
+      printRing = new THREE.Mesh(
+        new THREE.RingGeometry(ringRadius * 0.93, ringRadius, 40),
+        new THREE.MeshBasicMaterial({ color: accent, transparent: true, opacity: 0, side: THREE.DoubleSide })
+      );
+      printRing.rotation.x = -Math.PI / 2;
+      printRing.visible = !reduced;
+      scene.add(printRing);
     });
 
   let t = 0;
@@ -89,6 +100,10 @@ if (canvas) {
       const buildT = Math.min(progress / buildFraction, 1);
       const revealY = printMinY + (printMaxY - printMinY) * buildT;
       printPlane.constant = revealY;
+      if (printRing) {
+        printRing.position.set(group.position.x, revealY, group.position.z);
+        printRing.material.opacity = buildT < 1 ? 0.55 : 0;
+      }
     }
     renderer.render(scene, camera);
   }
