@@ -2,5 +2,7 @@
   "email": "bonjour@lobos.fr",
   "telephone": "05 61 00 00 00",
   "adresse": "12 rue des Ateliers\n31000 Lyon",
-  "instagram": ""
+  "instagram": "",
+  "latitude": 45.7578,
+  "longitude": 4.832
 }

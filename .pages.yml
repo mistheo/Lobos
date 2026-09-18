@@ -222,6 +222,15 @@ content:
         label: Instagram
         type: string
         description: "URL complète du profil, ex. https://instagram.com/lobos.3d"
+      - name: latitude
+        label: Latitude
+        type: number
+        required: true
+        description: "Repère du plan (page contact). Trouver les coordonnées : clic droit sur l'adresse dans openstreetmap.org > « Afficher l'adresse »."
+      - name: longitude
+        label: Longitude
+        type: number
+        required: true
 
 settings:
   commit:

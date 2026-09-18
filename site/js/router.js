@@ -94,6 +94,11 @@ async function goTo(id, { push = true } = {}) {
   const view = VIEWS.includes(id) ? id : 'accueil';
   await renderView(view);
   showView(view);
+  if (view === 'contact') {
+    // Le conteneur doit être visible (showView vient de lever `hidden`) avant
+    // d'initialiser Leaflet, sinon il calcule une taille nulle pour la carte.
+    render.renderContactMap(document.querySelector('[data-slot="contact-map"]'), await data.loadContact());
+  }
   window.scrollTo(0, 0);
   if (push) {
     const url = view === 'accueil' ? location.pathname + location.search : `#${view}`;
