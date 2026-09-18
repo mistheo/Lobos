@@ -16,12 +16,12 @@ const BTN_PRIMARY_BLOCK = 'inline-flex items-center justify-center gap-1.5 curso
 const PH_SLOT_43 = 'grid place-items-center text-center aspect-[4/3] [background:repeating-linear-gradient(135deg,var(--color-surface)_0_9px,color-mix(in_srgb,var(--color-text)_7%,transparent)_9px_18px)]';
 const PH_SLOT_SPAN = 'font-mono text-[10px] tracking-[0.1em] text-[color-mix(in_srgb,var(--color-text)_55%,transparent)]';
 
-const SERVICE_ICON = 'inline-flex items-center justify-center w-10 h-10 rounded-sm bg-[color-mix(in_srgb,var(--color-accent)_14%,transparent)] text-accent text-[19px] shrink-0 transition-colors duration-300 group-hover:bg-[color-mix(in_srgb,var(--color-accent)_22%,transparent)]';
+const SERVICE_ICON = 'inline-flex items-center justify-center w-10 h-10 rounded-sm bg-[color-mix(in_srgb,var(--color-accent)_10%,transparent)] text-accent text-[19px] shrink-0s';
 
 // Carte service (aperçu accueil, "Ce que nous faisons").
 export function renderServiceCards(services) {
   return services.map((s) => `
-    <article class="group flex flex-col gap-4 p-5 rounded-md bg-surface shadow-sm transition-shadow duration-300 hover:shadow-md">
+    <article class="group flex flex-col gap-4 p-5 rounded-md bg-surface">
       <div class="${SERVICE_ICON}">
         <i class="ph ph-${escapeHtml(s.icone)}" aria-hidden="true"></i>
       </div>
