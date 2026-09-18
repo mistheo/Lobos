@@ -75,6 +75,14 @@ if (canvas) {
       logo.material.clippingPlanes = [printPlane];
       group.add(logo);
 
+      // remplit les côtés (l'épaisseur) du logo, les faces avant/arrière restent creuses
+      const capMaterial = new THREE.MeshBasicMaterial({ transparent: true, opacity: 0, depthWrite: false });
+      const sideMaterial = new THREE.MeshBasicMaterial({
+        color: accent, transparent: true, opacity: 0.35, side: THREE.DoubleSide, clippingPlanes: [printPlane],
+      });
+      const sides = new THREE.Mesh(geometry, [capMaterial, sideMaterial]);
+      group.add(sides);
+
       // démarre le chrono d'impression seulement une fois le maillage prêt
       printStartT = t;
     });
@@ -109,6 +117,9 @@ if (canvas) {
   // le thème change la couleur des lignes
   new MutationObserver(() => {
     const c = accentOf();
-    scene.traverse((o) => { if (o.material && o.material.color) o.material.color.copy(c); });
+    scene.traverse((o) => {
+      const materials = Array.isArray(o.material) ? o.material : [o.material];
+      materials.forEach((m) => { if (m && m.color) m.color.copy(c); });
+    });
   }).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
 }
