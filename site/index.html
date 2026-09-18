@@ -657,7 +657,6 @@
               >
                 Envoyer ma demande
               </button>
-              <span class="text-muted">Réponse rapide, circuit court.</span>
             </div>
           </form>
           <aside class="flex flex-col gap-6">
@@ -675,7 +674,7 @@
             <hr
               class="h-px border-0 my-4 [background:linear-gradient(to_right,transparent,var(--color-divider)_48px,var(--color-divider)_calc(100%-48px),transparent)]"
             />
-            <div>
+            <div data-section="contact-horaires" hidden>
               <h6
                 class="font-heading font-medium text-[13px] leading-[1.12] tracking-[0.08em] uppercase text-accent mb-4"
               >
@@ -683,12 +682,8 @@
               </h6>
               <ul
                 class="list-none m-0 p-0 flex flex-col gap-3 text-sm text-[color-mix(in_srgb,var(--color-text)_72%,transparent)]"
-              >
-                <li class="flex gap-4 items-start">
-                  Lundi – vendredi · 9h – 18h
-                </li>
-                <li class="flex gap-4 items-start">Samedi · sur rendez-vous</li>
-              </ul>
+                data-slot="contact-horaires"
+              ></ul>
             </div>
             <div
               class="aspect-square rounded-md overflow-hidden bg-surface"
