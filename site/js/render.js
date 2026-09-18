@@ -16,20 +16,20 @@ const BTN_PRIMARY_BLOCK = 'inline-flex items-center justify-center gap-1.5 curso
 const PH_SLOT_43 = 'grid place-items-center text-center aspect-[4/3] [background:repeating-linear-gradient(135deg,var(--color-surface)_0_9px,color-mix(in_srgb,var(--color-text)_7%,transparent)_9px_18px)]';
 const PH_SLOT_SPAN = 'font-mono text-[10px] tracking-[0.1em] text-[color-mix(in_srgb,var(--color-text)_55%,transparent)]';
 
+const SERVICE_ICON = 'inline-flex items-center justify-center w-10 h-10 rounded-sm bg-[color-mix(in_srgb,var(--color-accent)_14%,transparent)] text-accent text-[19px] shrink-0 transition-colors duration-300 group-hover:bg-[color-mix(in_srgb,var(--color-accent)_22%,transparent)]';
+
 // Carte service (aperçu accueil, "Ce que nous faisons").
 export function renderServiceCards(services) {
   return services.map((s) => `
-    <article class="${CARD} flex flex-col p-4">
-  <div class="flex items-center gap-3 my-3">
-    <i class="ph ph-${escapeHtml(s.icone)} text-accent text-[22px] flex-shrink-0"></i>
-    <h3 class="${CARD_TITLE} text-lg font-bold text-gray-900 leading-tight">
-      ${escapeHtml(s.titre)}
-    </h3>
-  </div>
-  <p class="${CARD_BODY} text-gray-600 text-sm leading-relaxed">
-    ${escapeHtml(s.description)}
-  </p>
-</article>`).join('');
+    <article class="group flex flex-col gap-4 p-5 rounded-md bg-surface shadow-sm transition-shadow duration-300 hover:shadow-md">
+      <div class="${SERVICE_ICON}">
+        <i class="ph ph-${escapeHtml(s.icone)}" aria-hidden="true"></i>
+      </div>
+      <div class="flex flex-col gap-1.5">
+        <h3 class="${CARD_TITLE}">${escapeHtml(s.titre)}</h3>
+        <p class="m-0 text-[13px] leading-relaxed text-[color-mix(in_srgb,var(--color-text)_68%,transparent)]">${escapeHtml(s.description)}</p>
+      </div>
+    </article>`).join('');
 }
 
 // Ligne service (page Services, liste complète).
