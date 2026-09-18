@@ -1,12 +1,16 @@
 ---
-titre: Un atelier, deux imprimantes, et l'envie de rendre la 3D accessible.
-photo: ''
+titre: Un atelier, des impriments et de l'envie
 valeurs:
-  - { titre: Accessible, icone: hand-heart, texte: 'Pas de jargon, pas de minimum de commande.' }
-  - { titre: Modulable, icone: puzzle-piece, texte: "Vous prenez l'impression seule, ou tout le parcours." }
-  - { titre: Durable, icone: recycle, texte: "Réparer une pièce coûte moins qu'un objet neuf." }
+  - titre: Accessible
+    icone: hand-heart
+    texte: Pas de jargon, pas de minimum de commande.
+  - titre: Modulable
+    icone: puzzle-piece
+    texte: Vous prenez l'impression seule, ou tout le parcours.
+  - titre: Durable
+    icone: recycle
+    texte: Réparer une pièce coûte moins qu'un objet neuf.
 ---
-
 Lobos est né en 2023 d'un constat simple : beaucoup de gens ont besoin d'une pièce précise, en un seul exemplaire, et ne savent pas à qui la demander. Les industriels ne prennent pas les petites commandes, et les fichiers ne sont pas toujours faciles à trouver.
 
 Nous travaillons donc à l'échelle de la pièce unique autant qu'à celle de la série. Un particulier qui veut réparer son lave-linge et un bureau d'études qui teste un boîtier passent par la même porte.
