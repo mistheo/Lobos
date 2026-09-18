@@ -218,6 +218,10 @@ content:
         type: text
         required: true
         description: "Une ligne par élément (rue, puis code postal et ville)."
+      - name: horaires
+        label: Horaires de l'atelier
+        type: text
+        description: "Une ligne par créneau, ex. « Lundi – vendredi · 9h – 18h ». Affiché sous « Atelier ouvert » sur la page contact ; la section est masquée si ce champ est vide."
       - name: instagram
         label: Instagram
         type: string

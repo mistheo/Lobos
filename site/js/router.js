@@ -52,7 +52,10 @@ async function renderView(id) {
       setSlot('a-propos-valeurs', render.renderAProposValeurs(aPropos.valeurs));
       setSlot('equipe', render.renderEquipe(equipe));
     } else if (id === 'contact') {
-      setSlot('contact-aside', render.renderContactAside(await data.loadContact()));
+      const contact = await data.loadContact();
+      setSlot('contact-aside', render.renderContactAside(contact));
+      setSlot('contact-horaires', render.renderContactHoraires(contact));
+      toggleSection('contact-horaires', Boolean(contact.horaires?.trim()));
     }
     rendered.add(id);
   } catch (e) {

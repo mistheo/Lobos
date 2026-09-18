@@ -110,6 +110,12 @@ export function renderContactAside(contact) {
     ${instagram}`;
 }
 
+// Horaires de l'atelier (page contact) : une ligne par créneau.
+export function renderContactHoraires(contact) {
+  return String(contact.horaires ?? '').split('\n').filter(Boolean)
+    .map((ligne) => `<li class="flex gap-4 items-start">${escapeHtml(ligne)}</li>`).join('');
+}
+
 // Bloc contact du pied de page : mêmes coordonnées, en texte simple.
 export function renderFooterContact(contact) {
   const instagram = contact.instagram
