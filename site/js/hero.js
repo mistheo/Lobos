@@ -43,6 +43,7 @@ if (canvas) {
   let printMinY = -1.6;
   let printMaxY = 1.6;
   let printRing;
+  let printStartT = null;
 
   // extrude le tracé du logo en un maillage low-poly pour le rendu en fil de fer
   fetch('assets/logo.svg')
@@ -84,25 +85,29 @@ if (canvas) {
       printRing.rotation.x = -Math.PI / 2;
       printRing.visible = !reduced;
       scene.add(printRing);
+
+      // démarre le chrono d'impression seulement une fois le maillage prêt
+      printStartT = t;
     });
 
   let t = 0;
-  const cycle = 0.7; // secondes : construction du logo puis pause avant la reprise
-  const buildFraction = 0.72;
+  const buildDuration = 0.7; // secondes : durée de l'effet d'impression 3D, joué une seule fois
   function frame() {
     requestAnimationFrame(frame);
     if (!reduced) {
       t += 0.004;
+      // la rotation continue indéfiniment, y compris une fois le logo imprimé
       group.rotation.y = t;
       group.rotation.x = Math.sin(t * 0.7) * 0.18;
 
-      const progress = (t % cycle) / cycle;
-      const buildT = Math.min(progress / buildFraction, 1);
-      const revealY = printMinY + (printMaxY - printMinY) * buildT;
-      printPlane.constant = revealY;
-      if (printRing) {
-        printRing.position.set(group.position.x, revealY, group.position.z);
-        printRing.material.opacity = buildT < 1 ? 0.55 : 0;
+      if (printStartT !== null) {
+        const buildT = Math.min((t - printStartT) / buildDuration, 1);
+        const revealY = printMinY + (printMaxY - printMinY) * buildT;
+        printPlane.constant = revealY;
+        if (printRing) {
+          printRing.position.set(group.position.x, revealY, group.position.z);
+          printRing.material.opacity = buildT < 1 ? 0.55 : 0;
+        }
       }
     }
     renderer.render(scene, camera);
