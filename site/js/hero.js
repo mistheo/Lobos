@@ -43,6 +43,7 @@ if (canvas) {
   let printMinY = -1.6;
   let printMaxY = 1.6;
   let printRing;
+  let printNozzle;
   let printStartT = null;
 
   // extrude le tracé du logo en un maillage low-poly pour le rendu en fil de fer
@@ -108,6 +109,15 @@ if (canvas) {
       printRing.visible = !reduced;
       scene.add(printRing);
 
+      // buse d'impression stylisée qui suit le plan de coupe pendant la construction
+      printNozzle = new THREE.Mesh(
+        new THREE.ConeGeometry(ringRadius * 0.22, ringRadius * 0.5, 4),
+        new THREE.MeshBasicMaterial({ color: accent, transparent: true, opacity: 0 })
+      );
+      printNozzle.rotation.x = Math.PI;
+      printNozzle.visible = !reduced;
+      scene.add(printNozzle);
+
       // démarre le chrono d'impression seulement une fois le maillage prêt
       printStartT = t;
     });
@@ -129,6 +139,10 @@ if (canvas) {
         if (printRing) {
           printRing.position.set(group.position.x, revealY, group.position.z);
           printRing.material.opacity = buildT < 1 ? 0.55 : 0;
+        }
+        if (printNozzle) {
+          printNozzle.position.set(group.position.x, revealY + printNozzle.geometry.parameters.height * 0.6, group.position.z);
+          printNozzle.material.opacity = buildT < 1 ? 0.8 : 0;
         }
       }
     }
