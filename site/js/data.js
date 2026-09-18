@@ -18,3 +18,4 @@ export const loadServices = () => fetchJson('data/services.json');
 export const loadAtouts = () => fetchJson('data/atouts.json');
 export const loadEquipe = () => fetchJson('data/equipe.json');
 export const loadAPropos = () => fetchJson('data/a-propos.json');
+export const loadContact = () => fetchJson('data/contact.json');

@@ -8,7 +8,7 @@ import { initMarquee } from './marquee.js';
 
 const VIEWS = ['accueil', 'a-propos', 'services', 'galerie', 'contact'];
 const TITLES = {
-  'accueil': 'Impression 3D à Toulouse · Lobos',
+  'accueil': 'Impression 3D à Lyon · Lobos',
   'a-propos': 'À propos · Lobos',
   'services': 'Services et portfolio · Lobos',
   'galerie': 'Galerie · Lobos',
@@ -51,6 +51,8 @@ async function renderView(id) {
       setSlot('a-propos-body', render.renderAProposBody(aPropos.bodyMarkdown));
       setSlot('a-propos-valeurs', render.renderAProposValeurs(aPropos.valeurs));
       setSlot('equipe', render.renderEquipe(equipe));
+    } else if (id === 'contact') {
+      setSlot('contact-aside', render.renderContactAside(await data.loadContact()));
     }
     rendered.add(id);
   } catch (e) {
@@ -69,13 +71,13 @@ function showView(id) {
     const active = section.dataset.view === id;
     section.hidden = !active;
     if (active) {
-      // relance l'animation .page-in (déjà utilisée pour les changements de page)
-      section.classList.remove('page');
+      // relance l'animation animate-page-in (déjà utilisée pour les changements de page)
+      section.classList.remove('animate-page-in');
       void section.offsetWidth;
-      section.classList.add('page');
+      section.classList.add('animate-page-in');
     }
   });
-  document.querySelectorAll('.nav-links a, .mobile-menu a').forEach((a) => {
+  document.querySelectorAll('[data-nav-links] a, #menu-mobile a').forEach((a) => {
     const target = a.getAttribute('href').replace('#', '') || 'accueil';
     if (target === id) a.setAttribute('aria-current', 'page');
     else a.removeAttribute('aria-current');
@@ -101,6 +103,10 @@ async function goTo(id, { push = true } = {}) {
 }
 
 export function initRouter() {
+  data.loadContact()
+    .then((contact) => setSlot('contact-footer', render.renderFooterContact(contact)))
+    .catch((e) => console.error('[router] rendu du contact (pied de page) impossible :', e));
+
   document.addEventListener('click', (e) => {
     const link = e.target.closest('a[href^="#"]');
     if (!link) return;

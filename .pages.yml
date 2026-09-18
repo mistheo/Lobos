@@ -197,6 +197,32 @@ content:
         type: rich-text
         required: true
 
+  # Coordonnées : email, téléphone, adresse, Instagram (aside contact + pied de page).
+  - name: contact
+    label: Contact
+    type: file
+    path: site/content/contact.md
+    format: yaml-frontmatter
+    fields:
+      - name: email
+        label: Email
+        type: string
+        required: true
+      - name: telephone
+        label: Téléphone
+        type: string
+        required: true
+        description: "Affiché tel quel, ex. 05 61 00 00 00."
+      - name: adresse
+        label: Adresse
+        type: text
+        required: true
+        description: "Une ligne par élément (rue, puis code postal et ville)."
+      - name: instagram
+        label: Instagram
+        type: string
+        description: "URL complète du profil, ex. https://instagram.com/lobos.3d"
+
 settings:
   commit:
     identity: app

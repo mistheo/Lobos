@@ -33,6 +33,12 @@ async function readAPropos() {
   return { ...data, bodyMarkdown: content.trim() };
 }
 
+// Coordonnées : collection type: file, frontmatter seul (pas de corps).
+async function readContact() {
+  const raw = await readFile(join(contentDir, 'contact.md'), 'utf8');
+  return matter(raw).data;
+}
+
 async function main() {
   await mkdir(dataDir, { recursive: true });
 
@@ -45,6 +51,10 @@ async function main() {
   const aPropos = await readAPropos();
   await writeFile(join(dataDir, 'a-propos.json'), JSON.stringify(aPropos, null, 2) + '\n');
   console.log('data/a-propos.json');
+
+  const contact = await readContact();
+  await writeFile(join(dataDir, 'contact.json'), JSON.stringify(contact, null, 2) + '\n');
+  console.log('data/contact.json');
 }
 
 main().catch((err) => {

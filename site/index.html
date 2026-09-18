@@ -1,228 +1,753 @@
-<!DOCTYPE html>
-<html lang="fr" data-theme="dark">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Impression 3D à Toulouse · Lobos</title>
-<meta name="description" content="Lobos imprime vos pièces en 3D : filament, résine, modélisation. Réponse rapide et circuit court.">
-<script>(function(){var m=document.cookie.match(/(?:^|; )lobos-theme=([^;]*)/);if(m&&m[1]==='light')document.documentElement.dataset.theme='light';})();</script>
-<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="css/nocturne.css">
-<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
-<link rel="stylesheet" href="css/lobos.css">
-<script src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js"></script>
-<script type="module" src="js/hero.js"></script>
-<script type="module" src="js/main.js"></script>
-</head>
-<body>
-<a class="skip" href="#main">Aller au contenu</a>
-<header class="site-header">
-  <div class="wrap nav">
-    <a class="nav-brand" href="#accueil"><span class="logo-mark" aria-hidden="true"></span><span class="wordmark">Lobos<span class="dot">.</span></span></a>
-    <nav class="nav-links" aria-label="Navigation principale">
-      <a href="#accueil" aria-current="page">Accueil</a>
-      <a href="#a-propos">À propos</a>
-      <a href="#services">Services</a>
-      <a href="#galerie">Galerie</a>
-      <a href="#contact">Contact</a>
-    </nav>
-    <button class="btn btn-secondary btn-icon theme-toggle" type="button" aria-label="Basculer entre thème clair et sombre" data-theme-toggle>
-      <i class="ph ph-sun" data-icon-dark></i><i class="ph ph-moon" data-icon-light></i>
-    </button>
-    <button class="btn btn-secondary btn-icon burger" type="button" aria-expanded="false" aria-controls="menu-mobile" aria-label="Ouvrir le menu" data-menu-toggle><i class="ph ph-list"></i></button>
-  </div>
-  <nav class="mobile-menu" id="menu-mobile" hidden aria-label="Navigation mobile">
-    <a href="#accueil" aria-current="page">Accueil</a><a href="#a-propos">À propos</a><a href="#services">Services</a><a href="#galerie">Galerie</a><a href="#contact">Contact</a>
-  </nav>
-</header>
-<main id="main">
+<!doctype html>
+<html lang="fr" data-theme="dark" class="scroll-smooth">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Impression 3D à Lyon · Lobos</title>
+    <meta
+      name="description"
+      content="Lobos imprime vos pièces en 3D : filament, résine, modélisation. Réponse rapide et circuit court."
+    />
+    <script>
+      (function () {
+        var m = document.cookie.match(/(?:^|; )lobos-theme=([^;]*)/);
+        if (m && m[1] === "light")
+          document.documentElement.dataset.theme = "light";
+      })();
+    </script>
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css"
+    />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- @tailwindcss/browser ne sait lire que des balises <style type="text/tailwindcss">
+     inline : il n'y a pas de support natif pour un fichier externe (pas de <link>,
+     pas de <script src>). css/tailwind-config.css est donc chargé ici en JS et injecté
+     dans cette balise vide ; le compilateur observe la balise (MutationObserver) et
+     recompile dès que son contenu change. Provoque un très bref flash sans style le
+     temps du fetch — c'est le compromis pour garder la config dans un fichier à part. -->
+    <style type="text/tailwindcss" id="tw-config"></style>
+    <script>
+      fetch("css/tailwind-config.css")
+        .then((r) => r.text())
+        .then((css) => {
+          document.getElementById("tw-config").textContent = css;
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js"></script>
+    <script type="module" src="js/hero.js"></script>
+    <script type="module" src="js/main.js"></script>
+  </head>
 
-<section class="page" data-view="accueil">
-  <section class="hero">
-    <canvas id="hero-canvas" aria-hidden="true"></canvas>
-    <div class="hero-grid" aria-hidden="true"></div>
-    <div class="wrap hero-inner">
-      <h6 class="kicker">Impression 3D · particuliers et professionnels</h6>
-      <h1>Vos idées, imprimées en trois dimensions.</h1>
-      <p class="lead">Un service simple et modulable. Envoyez un fichier, une photo ou une esquisse : nous vous répondons avec un devis et un délai.</p>
-      <div class="actions">
-        <a class="btn btn-primary btn-lg" href="#contact">Discuter de mon projet</a>
-        <a class="btn btn-secondary btn-lg" href="#services">Voir les projets</a>
+  <body
+    class="m-0 text-[15px] leading-[1.55] font-normal font-body bg-bg text-text transition-colors duration-300 selection:bg-[color-mix(in_srgb,var(--color-accent)_30%,transparent)]"
+  >
+    <a
+      class="absolute -left-[9999px] text-accent no-underline focus:left-4 focus:top-4 focus:z-10 focus:bg-surface focus:px-3 focus:py-2 focus:outline-hidden focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2"
+      href="#main"
+      >Aller au contenu</a
+    >
+    <header
+      class="sticky top-0 z-[5] bg-[color-mix(in_srgb,var(--color-bg)_88%,transparent)] backdrop-blur"
+    >
+      <div
+        class="mx-auto w-full max-w-[1152px] px-4 md:px-8 flex items-center gap-6 md:gap-[30px] py-4"
+      >
+        <a
+          class="mr-auto inline-flex items-center gap-3 no-underline text-inherit font-heading font-medium text-[20px] tracking-[-0.03em] outline-hidden focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2"
+          href="#accueil"
+        >
+          <span
+            class="w-[22px] h-[25px] shrink-0 bg-current [mask:url('assets/logo.svg')_center/contain_no-repeat] [-webkit-mask:url('assets/logo.svg')_center/contain_no-repeat]"
+            aria-hidden="true"
+          ></span>
+          <span class="whitespace-nowrap"
+            >Lobos<span class="text-accent">.</span></span
+          >
+        </a>
+        <nav
+          class="hidden min-[860px]:flex gap-[30px] items-center"
+          aria-label="Navigation principale"
+          data-nav-links
+        >
+          <a
+            class="text-inherit no-underline text-sm transition-colors duration-300 hover:text-accent aria-[current=page]:text-accent outline-hidden focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2"
+            href="#accueil"
+            aria-current="page"
+            >Accueil</a 
+          >
+          <a
+            class="text-inherit no-underline text-sm transition-colors duration-300 hover:text-accent aria-[current=page]:text-accent outline-hidden focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2"
+            href="#a-propos"
+            >À propos</a
+          >
+          <a
+            class="text-inherit no-underline text-sm transition-colors duration-300 hover:text-accent aria-[current=page]:text-accent outline-hidden focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2"
+            href="#services"
+            >Services</a
+          >
+          <a
+            class="text-inherit no-underline text-sm transition-colors duration-300 hover:text-accent aria-[current=page]:text-accent outline-hidden focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2"
+            href="#galerie"
+            >Galerie</a
+          >
+          <a
+            class="text-inherit no-underline text-sm transition-colors duration-300 hover:text-accent aria-[current=page]:text-accent outline-hidden focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2"
+            href="#contact"
+            >Contact</a
+          >
+        </nav>
+        <button
+          class="hidden min-[860px]:inline-flex items-center justify-center cursor-pointer font-heading font-medium text-text bg-transparent rounded-xs w-[36px] h-[36px] p-0 outline-hidden focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2 hover:bg-[color-mix(in_srgb,var(--color-text)_7%,transparent)] active:bg-[color-mix(in_srgb,var(--color-text)_14%,transparent)]"
+          type="button"
+          aria-label="Basculer entre thème clair et sombre"
+          data-theme-toggle
+        >
+          <i class="ph ph-sun text-[17px] theme-light:hidden" data-icon-dark></i
+          ><i
+            class="ph ph-moon text-[17px] theme-dark:hidden"
+            data-icon-light
+          ></i>
+        </button>
+        <button
+          class="inline-flex min-[860px]:hidden items-center justify-center cursor-pointer font-heading font-medium text-text bg-transparent border border-divider w-[36px] h-[36px] p-0 outline-hidden focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2 hover:bg-[color-mix(in_srgb,var(--color-text)_7%,transparent)] active:bg-[color-mix(in_srgb,var(--color-text)_14%,transparent)]"
+          type="button"
+          aria-expanded="false"
+          aria-controls="menu-mobile"
+          aria-label="Ouvrir le menu"
+          data-menu-toggle
+        >
+          <i class="ph ph-list text-[17px]"></i>
+        </button>
       </div>
-      <hr class="hr hero-rule">
-      <span class="tag tag-outline mono-tag">CMS · collection « atouts »</span>
-      <ul class="points" data-slot="atouts"></ul>
-    </div>
-  </section>
+      <nav
+        class="flex flex-col pt-3 px-4 pb-6 gap-4 border-b border-divider animate-page-in motion-reduce:animate-none [&[hidden]]:hidden"
+        id="menu-mobile"
+        hidden
+        aria-label="Navigation mobile"
+      >
+        <a
+          class="text-inherit no-underline text-base outline-hidden focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2"
+          href="#accueil"
+          aria-current="page"
+          >Accueil</a
+        ><a
+          class="text-inherit no-underline text-base outline-hidden focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2"
+          href="#a-propos"
+          >À propos</a
+        ><a
+          class="text-inherit no-underline text-base outline-hidden focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2"
+          href="#services"
+          >Services</a
+        ><a
+          class="text-inherit no-underline text-base outline-hidden focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2"
+          href="#galerie"
+          >Galerie</a
+        ><a
+          class="text-inherit no-underline text-base outline-hidden focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2"
+          href="#contact"
+          >Contact</a
+        >
+      </nav>
+    </header>
+    <main id="main">
+      <section
+        class="animate-page-in motion-reduce:animate-none"
+        data-view="accueil"
+      >
+        <section class="relative overflow-hidden">
+          <canvas
+            id="hero-canvas"
+            class="absolute inset-0 w-full h-full block"
+            aria-hidden="true"
+          ></canvas>
+          <div
+            class="absolute inset-0 [background-image:linear-gradient(color-mix(in_srgb,var(--color-accent)_9%,transparent)_1px,transparent_1px),linear-gradient(90deg,color-mix(in_srgb,var(--color-accent)_9%,transparent)_1px,transparent_1px)] [background-size:64px_64px] [mask-image:radial-gradient(120%_90%_at_20%_40%,#000,transparent_75%)] [-webkit-mask-image:radial-gradient(120%_90%_at_20%_40%,#000,transparent_75%)]"
+            aria-hidden="true"
+          ></div>
+          <div
+            class="mx-auto w-full max-w-[1152px] px-4 md:px-8 relative pt-20 pb-24"
+          >
+            <h6
+              class="font-heading font-medium text-[13px] leading-[1.12] tracking-[0.08em] uppercase text-accent mb-4"
+            >
+              Impression 3D basé à Lyon
+            </h6>
+            <h1
+              class="font-heading font-medium tracking-[-0.015em] text-[length:clamp(34px,6.2vw,62px)] leading-[1.05] max-w-[16ch] mb-6"
+            >
+              Vos idées, imprimées en trois dimensions.
+            </h1>
+            <p
+              class="text-[17px] max-w-[52ch] text-[color-mix(in_srgb,var(--color-text)_72%,transparent)] mb-8"
+            >
+              Un service simple et modulable. Envoyez un fichier, une photo ou
+              une esquisse : nous vous répondons avec un devis et un délai.
+            </p>
+            
+            <hr
+              class="h-px border-0 mt-16 mb-6 [background:linear-gradient(to_right,transparent,var(--color-divider)_48px,var(--color-divider)_calc(100%-48px),transparent)]"
+            />
+            <ul
+              class="list-none m-0 p-0 grid gap-8 max-w-[820px] min-[700px]:grid-cols-3"
+              data-slot="atouts"
+            ></ul>
+          </div>
+        </section>
 
-  <section class="wrap section">
-    <div class="card-head"><h2>Ce que nous faisons</h2><span class="tag tag-outline mono-tag">CMS · collection « services »</span></div>
-    <div class="grid-3" data-slot="services-preview"></div>
-    <a class="btn btn-ghost" href="#services">Tous les services <i class="ph ph-arrow-right"></i></a>
-  </section>
+        <section class="mx-auto w-full max-w-[1152px] px-4 md:px-8 my-16">
+          <div class="flex items-baseline gap-3 flex-wrap">
+            <h2
+              class="font-heading font-medium leading-[1.12] tracking-[-0.015em] text-[32px] mb-2"
+            >
+              Ce que nous faisons 
+            </h2>
+          </div>
+          <div
+            class="grid gap-6 grid-cols-[repeat(auto-fit,minmax(240px,1fr))] my-8"
+            data-slot="services-preview"
+          ></div>
+          <a
+            class="inline-flex items-center justify-center gap-1.5 cursor-pointer no-underline font-heading font-medium text-sm leading-[1.2] text-accent px-[2.8px] py-2 outline-hidden focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2 hover:bg-[color-mix(in_srgb,var(--color-accent)_10%,transparent)] active:bg-[color-mix(in_srgb,var(--color-accent)_18%,transparent)]"
+            href="#services"
+            >Tous les services <i class="ph ph-arrow-right"></i
+          ></a>
+        </section>
 
-  <section class="wrap section" data-section="projets-phares" hidden>
-    <div class="card-head"><h2>Projets phares</h2><span class="tag tag-outline mono-tag">CMS · case « projet phare »</span></div>
-    <p class="section-lead">Une sélection de trois projets. Dans PagesCMS, cochez « projet phare » sur une fiche pour qu’elle apparaisse ici ; tous les autres projets restent visibles dans la galerie.</p>
-    <div class="grid-3" data-slot="projets-phares"></div>
-    <a class="btn btn-ghost" href="#galerie">Voir toute la galerie <i class="ph ph-arrow-right"></i></a>
-  </section>
-  <section class="band">
-    <div class="wrap band-inner">
-      <div><h2>Un projet en tête ?</h2><p>Décrivez-le en quelques lignes. Nous revenons vers vous avec une faisabilité, un prix et un délai.</p></div>
-      <a class="btn band-btn" href="#contact">Nous écrire <i class="ph ph-arrow-right"></i></a>
-    </div>
-  </section>
-</section>
+        <section
+          class="mx-auto w-full max-w-[1152px] px-4 md:px-8 my-16"
+          data-section="projets-phares"
+          hidden
+        >
+          <div class="flex items-baseline gap-3 flex-wrap">
+            <h2
+              class="font-heading font-medium leading-[1.12] tracking-[-0.015em] text-[32px] mb-2"
+            >
+              Projets phares
+            </h2>
+          </div>
+          <p
+            class="max-w-[60ch] text-[color-mix(in_srgb,var(--color-text)_60%,transparent)]"
+          >
+            Une sélection de trois projets. Dans PagesCMS, cochez « projet phare
+            » sur une fiche pour qu'elle apparaisse ici ; tous les autres
+            projets restent visibles dans la galerie.
+          </p>
+          <div
+            class="grid gap-6 grid-cols-[repeat(auto-fit,minmax(240px,1fr))] my-8"
+            data-slot="projets-phares"
+          ></div>
+          <a
+            class="inline-flex items-center justify-center gap-1.5 cursor-pointer no-underline font-heading font-medium text-sm leading-[1.2] text-accent px-[2.8px] py-2 outline-hidden focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2 hover:bg-[color-mix(in_srgb,var(--color-accent)_10%,transparent)] active:bg-[color-mix(in_srgb,var(--color-accent)_18%,transparent)]"
+            href="#galerie"
+            >Voir toute la galerie <i class="ph ph-arrow-right"></i
+          ></a>
+        </section>
+        <section
+          class="mt-16 [background:linear-gradient(160deg,var(--color-section),var(--color-section-glow))]"
+        >
+          <div
+            class="mx-auto w-full max-w-[1152px] px-4 md:px-8 flex flex-wrap items-center justify-between gap-16 py-20"
+          >
+            <div>
+              <h2
+                class="font-heading font-medium leading-[1.12] tracking-[-0.015em] text-[32px] mb-3 text-neutral-100 max-w-[30ch]"
+              >
+                Un projet en tête ?
+              </h2>
+              <p
+                class="m-0 text-base text-[color-mix(in_srgb,var(--color-neutral-100)_78%,transparent)] max-w-[46ch]"
+              >
+                Décrivez-le en quelques lignes. Nous revenons vers vous avec une
+                faisabilité, un prix et un délai.
+              </p>
+            </div>
+            <a
+              class="inline-flex items-center justify-center gap-1.5 cursor-pointer no-underline font-heading font-medium leading-[1.2] text-neutral-100 bg-transparent border border-[color-mix(in_srgb,var(--color-neutral-100)_55%,transparent)] px-8 py-4 text-[15px] outline-hidden focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2 hover:bg-[color-mix(in_srgb,var(--color-neutral-100)_12%,transparent)]"
+              href="#contact"
+              >Nous écrire <i class="ph ph-arrow-right"></i
+            ></a>
+          </div>
+        </section>
+      </section>
 
-<section class="page" data-view="a-propos" hidden>
-  <header class="wrap page-head">
-    <h6 class="kicker">À propos</h6>
-    <h1 class="h-page" data-slot="a-propos-titre">Un atelier, deux imprimantes, et l’envie de rendre la 3D accessible.</h1>
-  </header>
-  <section class="wrap split">
-    <div>
-      <span class="tag tag-outline mono-tag">CMS · page « à propos »</span>
-      <div data-slot="a-propos-body"></div>
-      <hr class="hr">
-      <div class="grid-3 values" data-slot="a-propos-valeurs"></div>
-    </div>
-    <aside class="aside">
-      <div class="card elev-sm team">
-        <div class="card-head"><div class="card-kicker">L’équipe</div><span class="tag tag-outline mono-tag">CMS</span></div>
-        <div data-slot="equipe"></div>
-      </div>
-      <div class="ph-slot ratio-45"><span>photo de l’atelier<br>4:5</span></div>
-    </aside>
-  </section>
-  <section class="band">
-    <div class="wrap band-inner">
-      <div><h2>Venez voir l’atelier.</h2></div>
-      <a class="btn band-btn" href="#contact">Nous écrire <i class="ph ph-arrow-right"></i></a>
-    </div>
-  </section>
-</section>
+      <section
+        class="animate-page-in motion-reduce:animate-none"
+        data-view="a-propos"
+        hidden
+      >
+        <header class="mx-auto w-full max-w-[1152px] px-4 md:px-8 pt-16 pb-8">
+          <h6
+            class="font-heading font-medium text-[13px] leading-[1.12] tracking-[0.08em] uppercase text-accent mb-4"
+          >
+            À propos
+          </h6>
+          <h1
+            class="font-heading font-medium tracking-[-0.015em] text-[clamp(30px,4.6vw,48px)] leading-[1.06] max-w-[26ch] mb-4"
+            data-slot="a-propos-titre"
+          >
+            Un atelier, deux imprimantes, et l'envie de rendre la 3D accessible.
+          </h1>
+        </header>
+        <section
+          class="mx-auto w-full max-w-[1152px] px-4 md:px-8 grid gap-16 items-start min-[900px]:grid-cols-[1.1fr_0.9fr]"
+        >
+          <div>
+            <div data-slot="a-propos-body"></div>
+            <hr
+              class="h-px border-0 my-4 [background:linear-gradient(to_right,transparent,var(--color-divider)_48px,var(--color-divider)_calc(100%-48px),transparent)]"
+            />
+            <div
+              class="grid gap-6 grid-cols-[repeat(auto-fit,minmax(240px,1fr))] my-8"
+              data-slot="a-propos-valeurs"
+            ></div>
+          </div>
+          <aside class="flex flex-col gap-6">
+            <div class="flex flex-col bg-surface shadow-sm p-6 gap-4">
+              <div class="flex items-baseline gap-3 flex-wrap">
+                <div class="text-[10px] tracking-[0.1em] uppercase text-accent">
+                  L'équipe
+                </div>
+              </div>
+              <div data-slot="equipe"></div>
+            </div>
+            <div
+              class="grid place-items-center text-center aspect-[4/5] [background:repeating-linear-gradient(135deg,var(--color-surface)_0_9px,color-mix(in_srgb,var(--color-text)_7%,transparent)_9px_18px)]"
+            >
+              <span
+                class="font-mono text-[10px] tracking-[0.1em] text-[color-mix(in_srgb,var(--color-text)_55%,transparent)]"
+                >photo de l'atelier<br />4:5</span
+              >
+            </div>
+          </aside>
+        </section>
+        <section
+          class="mt-16 [background:linear-gradient(160deg,var(--color-section),var(--color-section-glow))]"
+        >
+          <div
+            class="mx-auto w-full max-w-[1152px] px-4 md:px-8 flex flex-wrap items-center justify-between gap-16 py-20"
+          >
+            <div>
+              <h2
+                class="font-heading font-medium leading-[1.12] tracking-[-0.015em] text-[32px] mb-3 text-neutral-100 max-w-[30ch]"
+              >
+                Venez voir l'atelier.
+              </h2>
+            </div>
+            <a
+              class="inline-flex items-center justify-center gap-1.5 cursor-pointer no-underline font-heading font-medium leading-[1.2] text-neutral-100 bg-transparent border border-[color-mix(in_srgb,var(--color-neutral-100)_55%,transparent)] px-8 py-4 text-[15px] outline-hidden focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2 hover:bg-[color-mix(in_srgb,var(--color-neutral-100)_12%,transparent)]"
+              href="#contact"
+              >Nous écrire <i class="ph ph-arrow-right"></i
+            ></a>
+          </div>
+        </section>
+      </section>
 
-<section class="page" data-view="services" hidden>
-  <header class="wrap page-head">
-    <h6 class="kicker">Services</h6>
-    <h1 class="h-page">Un service à la carte, du fichier à la pièce finie.</h1>
-    <p class="lead">Vous choisissez ce dont vous avez besoin : nous pouvons imprimer votre fichier, le corriger, ou dessiner la pièce depuis zéro.</p>
-    <span class="tag tag-outline mono-tag">CMS · collection « services »</span>
-  </header>
-  <section class="wrap">
-    <hr class="hr">
-    <div class="service-list" data-slot="services"></div>
-  </section>
-  <section class="wrap section">
-    <div class="card-head"><h2>Portfolio</h2><span class="tag tag-outline mono-tag">CMS · collection « projets »</span></div>
-    <p class="section-lead">Réparations, maquettes, séries d’atelier : la galerie rassemble tous les projets, avec leurs photos et leur description.</p>
-    <a class="btn btn-primary btn-lg galerie-link" href="#galerie">Voir la galerie <i class="ph ph-arrow-right"></i></a>
-  </section>
-  <section class="band">
-    <div class="wrap band-inner">
-      <div><h2>Votre projet ne ressemble à aucun de ceux-là ? Écrivez-nous quand même.</h2></div>
-      <a class="btn band-btn" href="#contact">Nous écrire <i class="ph ph-arrow-right"></i></a>
-    </div>
-  </section>
-</section>
+      <section
+        class="animate-page-in motion-reduce:animate-none"
+        data-view="services"
+        hidden
+      >
+        <header class="mx-auto w-full max-w-[1152px] px-4 md:px-8 pt-16 pb-8">
+          <h6
+            class="font-heading font-medium text-[13px] leading-[1.12] tracking-[0.08em] uppercase text-accent mb-4"
+          >
+            Services
+          </h6>
+          <h1
+            class="font-heading font-medium tracking-[-0.015em] text-[clamp(30px,4.6vw,48px)] leading-[1.06] max-w-[26ch] mb-4"
+          >
+            Un service à la carte, du fichier à la pièce finie.
+          </h1>
+          <p
+            class="text-[17px] max-w-[52ch] text-[color-mix(in_srgb,var(--color-text)_72%,transparent)] mb-3"
+          >
+            Vous choisissez ce dont vous avez besoin : nous pouvons imprimer
+            votre fichier, le corriger, ou dessiner la pièce depuis zéro.
+          </p>
+        </header>
+        <section class="mx-auto w-full max-w-[1152px] px-4 md:px-8">
+          <hr
+            class="h-px border-0 my-4 [background:linear-gradient(to_right,transparent,var(--color-divider)_48px,var(--color-divider)_calc(100%-48px),transparent)]"
+          />
+          <div
+            class="grid gap-x-16 min-[820px]:grid-cols-2"
+            data-slot="services"
+          ></div>
+        </section>
+        <section class="mx-auto w-full max-w-[1152px] px-4 md:px-8 my-16">
+          <div class="flex items-baseline gap-3 flex-wrap">
+            <h2
+              class="font-heading font-medium leading-[1.12] tracking-[-0.015em] text-[32px] mb-2"
+            >
+              Portfolio
+            </h2>
+          </div>
+          <p
+            class="max-w-[60ch] text-[color-mix(in_srgb,var(--color-text)_60%,transparent)] mb-3"
+          >
+            Réparations, maquettes, séries d'atelier : la galerie rassemble tous
+            les projets, avec leurs photos et leur description.
+          </p>
+          <a
+            class="inline-flex items-center justify-center gap-1.5 cursor-pointer no-underline font-heading font-medium leading-[1.2] text-accent bg-transparent border border-accent px-6 py-4 text-[15px] mt-6 self-start outline-hidden focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2 hover:bg-[color-mix(in_srgb,var(--color-accent)_12%,transparent)] active:bg-[color-mix(in_srgb,var(--color-accent)_22%,transparent)]"
+            href="#galerie"
+            >Voir la galerie <i class="ph ph-arrow-right"></i
+          ></a>
+        </section>
+        <section
+          class="mt-16 [background:linear-gradient(160deg,var(--color-section),var(--color-section-glow))]"
+        >
+          <div
+            class="mx-auto w-full max-w-[1152px] px-4 md:px-8 flex flex-wrap items-center justify-between gap-16 py-20"
+          >
+            <div>
+              <h2
+                class="font-heading font-medium leading-[1.12] tracking-[-0.015em] text-[32px] mb-3 text-neutral-100 max-w-[30ch]"
+              >
+                Votre projet ne ressemble à aucun de ceux-là ? Écrivez-nous
+                quand même.
+              </h2>
+            </div>
+            <a
+              class="inline-flex items-center justify-center gap-1.5 cursor-pointer no-underline font-heading font-medium leading-[1.2] text-neutral-100 bg-transparent border border-[color-mix(in_srgb,var(--color-neutral-100)_55%,transparent)] px-8 py-4 text-[15px] outline-hidden focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2 hover:bg-[color-mix(in_srgb,var(--color-neutral-100)_12%,transparent)]"
+              href="#contact"
+              >Nous écrire <i class="ph ph-arrow-right"></i
+            ></a>
+          </div>
+        </section>
+      </section>
 
-<section class="page" data-view="galerie" hidden>
-  <header class="wrap page-head">
-    <h6 class="kicker">Galerie</h6>
-    <h1 class="h-page">Tous les projets sortis de l’atelier.</h1>
-    <p class="lead">Réparations, maquettes, séries d’atelier, pièces sur mesure. Les projets cochés « phare » dans le CMS apparaissent aussi sur l’accueil.</p>
-    <span class="tag tag-outline mono-tag">CMS · collection « projets »</span>
-  </header>
-  <div data-section="galerie-content" hidden>
-    <section class="wrap section">
-      <div class="filters">
-        <button class="tag tag-accent" type="button">Tous</button>
-        <button class="tag tag-neutral" type="button">Particuliers</button>
-        <button class="tag tag-neutral" type="button">Professionnels</button>
-        <button class="tag tag-neutral" type="button">Réparation</button>
-        <button class="tag tag-neutral" type="button">Maquettes</button>
-      </div>
-    </section>
-    <div class="marquee" data-marquee>
-      <div class="marquee-track" data-slot="galerie"></div>
-    </div>
-    <p class="wrap mono-note">Défilement continu de droite à gauche · glisser pour naviguer · pause au survol · ordre géré dans le CMS</p>
-  </div>
-  <section class="band">
-    <div class="wrap band-inner">
-      <div><h2>Votre projet ne ressemble à aucun de ceux-là ? Écrivez-nous quand même.</h2></div>
-      <a class="btn band-btn" href="#contact">Nous écrire <i class="ph ph-arrow-right"></i></a>
-    </div>
-  </section>
-</section>
+      <section
+        class="animate-page-in motion-reduce:animate-none"
+        data-view="galerie"
+        hidden
+      >
+        <header class="mx-auto w-full max-w-[1152px] px-4 md:px-8 pt-16 pb-8">
+          <h6
+            class="font-heading font-medium text-[13px] leading-[1.12] tracking-[0.08em] uppercase text-accent mb-4"
+          >
+            Galerie
+          </h6>
+          <h1
+            class="font-heading font-medium tracking-[-0.015em] text-[clamp(30px,4.6vw,48px)] leading-[1.06] max-w-[26ch] mb-4"
+          >
+            Tous les projets sortis de l'atelier.
+          </h1>
+          <p
+            class="text-[17px] max-w-[52ch] text-[color-mix(in_srgb,var(--color-text)_72%,transparent)] mb-3"
+          >
+            Réparations, maquettes, séries d'atelier, pièces sur mesure. Les
+            projets cochés « phare » dans le CMS apparaissent aussi sur
+            l'accueil.
+          </p>
+        </header>
+        <div data-section="galerie-content" hidden>
+          <section class="mx-auto w-full max-w-[1152px] px-4 md:px-8 my-16">
+            <div class="flex flex-wrap mt-6">
+              <button
+                class="inline-flex items-center text-[11px] tracking-[0.02em] px-[10px] py-[3px] bg-accent-800 text-accent-100 cursor-pointer border-0 [font:inherit] transition-colors duration-300 hover:bg-accent-700 hover:text-accent-100 outline-hidden focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2"
+                type="button"
+              >
+                Tous
+              </button>
+              <button
+                class="inline-flex items-center text-[11px] tracking-[0.02em] px-[10px] py-[3px] bg-neutral-800 text-neutral-100 cursor-pointer border-0 [font:inherit] transition-colors duration-300 hover:bg-accent-700 hover:text-accent-100 outline-hidden focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2"
+                type="button"
+              >
+                Particuliers
+              </button>
+              <button
+                class="inline-flex items-center text-[11px] tracking-[0.02em] px-[10px] py-[3px] bg-neutral-800 text-neutral-100 cursor-pointer border-0 [font:inherit] transition-colors duration-300 hover:bg-accent-700 hover:text-accent-100 outline-hidden focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2"
+                type="button"
+              >
+                Professionnels
+              </button>
+              <button
+                class="inline-flex items-center text-[11px] tracking-[0.02em] px-[10px] py-[3px] bg-neutral-800 text-neutral-100 cursor-pointer border-0 [font:inherit] transition-colors duration-300 hover:bg-accent-700 hover:text-accent-100 outline-hidden focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2"
+                type="button"
+              >
+                Réparation
+              </button>
+              <button
+                class="inline-flex items-center text-[11px] tracking-[0.02em] px-[10px] py-[3px] bg-neutral-800 text-neutral-100 cursor-pointer border-0 [font:inherit] transition-colors duration-300 hover:bg-accent-700 hover:text-accent-100 outline-hidden focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2"
+                type="button"
+              >
+                Maquettes
+              </button>
+            </div>
+          </section>
+          <div
+            class="group relative overflow-hidden py-[2.8px] cursor-grab [touch-action:pan-y] select-none [mask-image:linear-gradient(90deg,transparent,#000_64px,#000_calc(100%-64px),transparent)] [-webkit-mask-image:linear-gradient(90deg,transparent,#000_64px,#000_calc(100%-64px),transparent)]"
+            data-marquee
+          >
+            <div
+              class="flex gap-6 w-max animate-marquee motion-reduce:animate-none group-hover:[animation-play-state:paused] group-focus-within:[animation-play-state:paused]"
+              data-slot="galerie"
+              data-marquee-track
+            ></div>
+          </div>
+          <p
+            class="mx-auto w-full max-w-[1152px] px-4 md:px-8 font-mono text-[10px] tracking-[0.08em] text-[color-mix(in_srgb,var(--color-text)_50%,transparent)] mt-6"
+          >
+            Défilement continu de droite à gauche · glisser pour naviguer ·
+            pause au survol · ordre géré dans le CMS
+          </p>
+        </div>
+        <section
+          class="mt-16 [background:linear-gradient(160deg,var(--color-section),var(--color-section-glow))]"
+        >
+          <div
+            class="mx-auto w-full max-w-[1152px] px-4 md:px-8 flex flex-wrap items-center justify-between gap-16 py-20"
+          >
+            <div>
+              <h2
+                class="font-heading font-medium leading-[1.12] tracking-[-0.015em] text-[32px] mb-3 text-neutral-100 max-w-[30ch]"
+              >
+                Votre projet ne ressemble à aucun de ceux-là ? Écrivez-nous
+                quand même.
+              </h2>
+            </div>
+            <a
+              class="inline-flex items-center justify-center gap-1.5 cursor-pointer no-underline font-heading font-medium leading-[1.2] text-neutral-100 bg-transparent border border-[color-mix(in_srgb,var(--color-neutral-100)_55%,transparent)] px-8 py-4 text-[15px] outline-hidden focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2 hover:bg-[color-mix(in_srgb,var(--color-neutral-100)_12%,transparent)]"
+              href="#contact"
+              >Nous écrire <i class="ph ph-arrow-right"></i
+            ></a>
+          </div>
+        </section>
+      </section>
 
-<section class="page" data-view="contact" hidden>
-  <header class="wrap page-head">
-    <h6 class="kicker">Contact</h6>
-    <h1 class="h-page">Parlons de votre projet.</h1>
-    <p class="lead">Quelques lignes suffisent pour commencer.</p>
-  </header>
-  <section class="wrap contact-split">
-    <form class="contact-form" action="#" method="post" enctype="multipart/form-data">
-      <div class="form-row">
-        <div class="field"><label for="nom">Nom</label><input class="input" id="nom" name="nom" placeholder="Prénom et nom" required></div>
-        <div class="field"><label for="email">Email</label><input class="input" id="email" name="email" type="email" placeholder="vous@exemple.fr" required></div>
-      </div>
-      <div class="field">
-        <label for="type-1">Type de projet</label>
-        <div class="seg">
-          <label class="seg-opt"><input type="radio" id="type-1" name="type" value="piece-unique" checked><span>Pièce unique</span></label>
-          <label class="seg-opt"><input type="radio" name="type" value="petite-serie"><span>Petite série</span></label>
-          <label class="seg-opt"><input type="radio" name="type" value="modelisation"><span>Modélisation</span></label>
-          <label class="seg-opt"><input type="radio" name="type" value="autre"><span>Je ne sais pas</span></label>
+      <section
+        class="animate-page-in motion-reduce:animate-none"
+        data-view="contact"
+        hidden
+      >
+        <header class="mx-auto w-full max-w-[1152px] px-4 md:px-8 pt-16 pb-8">
+          <h6
+            class="font-heading font-medium text-[13px] leading-[1.12] tracking-[0.08em] uppercase text-accent mb-4"
+          >
+            Contact
+          </h6>
+          <h1
+            class="font-heading font-medium tracking-[-0.015em] text-[clamp(30px,4.6vw,48px)] leading-[1.06] max-w-[26ch] mb-4"
+          >
+            Parlons de votre projet.
+          </h1>
+          <p
+            class="text-[17px] max-w-[52ch] text-[color-mix(in_srgb,var(--color-text)_72%,transparent)] mb-3"
+          >
+            Quelques lignes suffisent pour commencer.
+          </p>
+        </header>
+        <section
+          class="mx-auto w-full max-w-[1152px] px-4 md:px-8 grid gap-16 items-start min-[900px]:grid-cols-[1.3fr_0.7fr] pb-16"
+        >
+          <form
+            class="flex flex-col gap-6"
+            action="#"
+            method="post"
+            enctype="multipart/form-data"
+          >
+            <div class="grid gap-6 min-[600px]:grid-cols-2">
+              <div>
+                <label
+                  class="block text-xs mb-[5px] text-[color-mix(in_srgb,var(--color-text)_70%,transparent)]"
+                  for="nom"
+                  >Nom</label
+                ><input
+                  class="w-full min-h-[36px] px-[10px] py-[6px] text-sm text-text caret-accent bg-surface border border-divider outline-hidden hover:border-[color-mix(in_srgb,var(--color-text)_45%,transparent)] focus-visible:border-accent focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-0"
+                  id="nom"
+                  name="nom"
+                  placeholder="Prénom et nom"
+                  required
+                />
+              </div>
+              <div>
+                <label
+                  class="block text-xs mb-[5px] text-[color-mix(in_srgb,var(--color-text)_70%,transparent)]"
+                  for="email"
+                  >Email</label
+                ><input
+                  class="w-full min-h-[36px] px-[10px] py-[6px] text-sm text-text caret-accent bg-surface border border-divider outline-hidden hover:border-[color-mix(in_srgb,var(--color-text)_45%,transparent)] focus-visible:border-accent focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-0"
+                  id="email"
+                  name="email"
+                  type="email"
+                  placeholder="vous@exemple.fr"
+                  required
+                />
+              </div>
+            </div>
+            <div>
+              <label
+                class="block text-xs mb-[5px] text-[color-mix(in_srgb,var(--color-text)_70%,transparent)]"
+                for="type-1"
+                >Type de projet</label
+              >
+              <div
+                class="inline-flex overflow-hidden border border-divider divide-x divide-divider"
+              >
+                <label
+                  class="inline-flex items-center gap-[6px] px-[12px] py-[7px] text-[13px] cursor-pointer has-[:checked]:text-accent has-[:checked]:shadow-[inset_0_0_0_1px_var(--color-accent)] not-has-[:checked]:hover:bg-[color-mix(in_srgb,var(--color-text)_7%,transparent)] has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-accent has-[:focus-visible]:-outline-offset-2"
+                  ><input
+                    class="sr-only"
+                    type="radio"
+                    id="type-1"
+                    name="type"
+                    value="piece-unique"
+                    checked
+                  /><span>Pièce unique</span></label
+                >
+                <label
+                  class="inline-flex items-center gap-[6px] px-[12px] py-[7px] text-[13px] cursor-pointer has-[:checked]:text-accent has-[:checked]:shadow-[inset_0_0_0_1px_var(--color-accent)] not-has-[:checked]:hover:bg-[color-mix(in_srgb,var(--color-text)_7%,transparent)] has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-accent has-[:focus-visible]:-outline-offset-2"
+                  ><input
+                    class="sr-only"
+                    type="radio"
+                    name="type"
+                    value="petite-serie"
+                  /><span>Petite série</span></label
+                >
+                <label
+                  class="inline-flex items-center gap-[6px] px-[12px] py-[7px] text-[13px] cursor-pointer has-[:checked]:text-accent has-[:checked]:shadow-[inset_0_0_0_1px_var(--color-accent)] not-has-[:checked]:hover:bg-[color-mix(in_srgb,var(--color-text)_7%,transparent)] has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-accent has-[:focus-visible]:-outline-offset-2"
+                  ><input
+                    class="sr-only"
+                    type="radio"
+                    name="type"
+                    value="modelisation"
+                  /><span>Modélisation</span></label
+                >
+                <label
+                  class="inline-flex items-center gap-[6px] px-[12px] py-[7px] text-[13px] cursor-pointer has-[:checked]:text-accent has-[:checked]:shadow-[inset_0_0_0_1px_var(--color-accent)] not-has-[:checked]:hover:bg-[color-mix(in_srgb,var(--color-text)_7%,transparent)] has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-accent has-[:focus-visible]:-outline-offset-2"
+                  ><input
+                    class="sr-only"
+                    type="radio"
+                    name="type"
+                    value="autre"
+                  /><span>Je ne sais pas</span></label
+                >
+              </div>
+            </div>
+            <div>
+              <label
+                class="block text-xs mb-[5px] text-[color-mix(in_srgb,var(--color-text)_70%,transparent)]"
+                for="message"
+                >Votre projet</label
+              ><textarea
+                class="w-full min-h-[130px] px-[10px] py-[6px] text-sm text-text caret-accent bg-surface border border-divider outline-hidden resize-y hover:border-[color-mix(in_srgb,var(--color-text)_45%,transparent)] focus-visible:border-accent focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-0"
+                id="message"
+                name="message"
+                placeholder="Ce que vous voulez faire imprimer, les dimensions si vous les connaissez, le délai souhaité."
+                required
+              ></textarea>
+            </div>
+            <div class="flex items-center gap-6 flex-wrap">
+              <button
+                class="inline-flex items-center justify-center gap-1.5 cursor-pointer font-heading font-medium leading-[1.2] text-accent bg-transparent border border-accent px-6 py-4 text-[15px] outline-hidden focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2 hover:bg-[color-mix(in_srgb,var(--color-accent)_12%,transparent)] active:bg-[color-mix(in_srgb,var(--color-accent)_22%,transparent)]"
+                type="submit"
+              >
+                Envoyer ma demande
+              </button>
+              <span class="text-muted">Réponse rapide, circuit court.</span>
+            </div>
+          </form>
+          <aside class="flex flex-col gap-6">
+            <div>
+              <h6
+                class="font-heading font-medium text-[13px] leading-[1.12] tracking-[0.08em] uppercase text-accent mb-4"
+              >
+                Nous joindre
+              </h6>
+              <ul
+                class="list-none m-0 p-0 flex flex-col gap-3 text-sm"
+                data-slot="contact-aside"
+              ></ul>
+            </div>
+            <hr
+              class="h-px border-0 my-4 [background:linear-gradient(to_right,transparent,var(--color-divider)_48px,var(--color-divider)_calc(100%-48px),transparent)]"
+            />
+            <div>
+              <h6
+                class="font-heading font-medium text-[13px] leading-[1.12] tracking-[0.08em] uppercase text-accent mb-4"
+              >
+                Atelier ouvert
+              </h6>
+              <ul
+                class="list-none m-0 p-0 flex flex-col gap-3 text-sm text-[color-mix(in_srgb,var(--color-text)_72%,transparent)]"
+              >
+                <li class="flex gap-4 items-start">
+                  Lundi – vendredi · 9h – 18h
+                </li>
+                <li class="flex gap-4 items-start">Samedi · sur rendez-vous</li>
+              </ul>
+            </div>
+            <div
+              class="aspect-square grid place-items-center bg-surface [background-image:linear-gradient(color-mix(in_srgb,var(--color-accent)_12%,transparent)_1px,transparent_1px),linear-gradient(90deg,color-mix(in_srgb,var(--color-accent)_12%,transparent)_1px,transparent_1px)] [background-size:32px_32px]"
+            >
+              <span
+                class="font-mono text-[10px] tracking-[0.1em] text-[color-mix(in_srgb,var(--color-text)_55%,transparent)]"
+                >plan / carte statique</span
+              >
+            </div>
+          </aside>
+        </section>
+      </section>
+    </main>
+    <footer class="py-16">
+      <div
+        class="mx-auto w-full max-w-[1152px] px-4 md:px-8 flex flex-wrap gap-16 items-start"
+      >
+        <div class="mr-auto">
+          <span
+            class="inline-flex items-center gap-3 font-heading font-medium text-[20px] tracking-[-0.03em]"
+            ><span
+              class="w-[20px] h-[23px] shrink-0 bg-current [mask:url('assets/logo.svg')_center/contain_no-repeat] [-webkit-mask:url('assets/logo.svg')_center/contain_no-repeat]"
+              aria-hidden="true"
+            ></span
+            ><span class="whitespace-nowrap"
+              >Lobos<span class="text-accent">.</span></span
+            ></span
+          >
+          <p class="text-muted mt-3 text-[13px]">Impression 3D à la demande.</p>
+        </div>
+        <div class="flex flex-col gap-2 text-[13px]">
+          <h6
+            class="font-heading font-medium text-[13px] leading-[1.12] tracking-[0.08em] uppercase mb-1"
+          >
+            Pages
+          </h6>
+          <a
+            class="text-inherit no-underline hover:text-accent outline-hidden focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2"
+            href="#a-propos"
+            >À propos</a
+          ><a
+            class="text-inherit no-underline hover:text-accent outline-hidden focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2"
+            href="#services"
+            >Services</a
+          ><a
+            class="text-inherit no-underline hover:text-accent outline-hidden focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2"
+            href="#galerie"
+            >Galerie</a
+          ><a
+            class="text-inherit no-underline hover:text-accent outline-hidden focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2"
+            href="#contact"
+            >Contact</a
+          >
+        </div>
+        <div class="flex flex-col gap-2 text-[13px]">
+          <h6
+            class="font-heading font-medium text-[13px] leading-[1.12] tracking-[0.08em] uppercase mb-1"
+          >
+            Contact
+          </h6>
+          <div class="flex flex-col gap-2" data-slot="contact-footer"></div>
         </div>
       </div>
-      <div class="field"><label for="message">Votre projet</label><textarea class="input" id="message" name="message" placeholder="Ce que vous voulez faire imprimer, les dimensions si vous les connaissez, le délai souhaité." required></textarea></div>
-      <div class="submit-row">
-        <button class="btn btn-primary btn-lg" type="submit">Envoyer ma demande</button>
-        <span class="text-muted">Réponse rapide, circuit court.</span>
-      </div>
-    </form>
-    <aside class="aside">
-      <div>
-        <h6 class="kicker">Nous joindre</h6>
-        <ul class="contact-list">
-          <li><i class="ph ph-envelope-simple"></i><a href="mailto:bonjour@lobos.fr">bonjour@lobos.fr</a></li>
-          <li><i class="ph ph-phone"></i><a href="tel:+33561000000">05 61 00 00 00</a></li>
-          <li><i class="ph ph-map-pin"></i><span>12 rue des Ateliers<br>31000 Toulouse</span></li>
-        </ul>
-      </div>
-      <hr class="hr">
-      <div>
-        <h6 class="kicker">Atelier ouvert</h6>
-        <ul class="contact-list plain">
-          <li>Lundi – vendredi · 9h – 18h</li>
-          <li>Samedi · sur rendez-vous</li>
-        </ul>
-      </div>
-      <div class="map-slot"><span>plan / carte statique</span></div>
-    </aside>
-  </section>
-</section>
-
-</main>
-<footer class="site-footer">
-  <div class="wrap footer-inner">
-    <div class="footer-brand">
-      <span class="nav-brand"><span class="logo-mark" aria-hidden="true"></span><span class="wordmark">Lobos<span class="dot">.</span></span></span>
-      <p class="text-muted">Impression 3D à la demande.</p>
-    </div>
-    <div class="footer-col">
-      <h6>Pages</h6>
-      <a href="#a-propos">À propos</a><a href="#services">Services</a><a href="#galerie">Galerie</a><a href="#contact">Contact</a>
-    </div>
-    <div class="footer-col">
-      <h6>Contact</h6>
-      <span>bonjour@lobos.fr</span><span>05 61 00 00 00</span><span class="text-muted">12 rue des Ateliers, Toulouse</span>
-    </div>
-  </div>
-</footer>
-<script src="js/app.js"></script>
-</body>
+    </footer>
+    <script src="js/app.js"></script>
+  </body>
 </html>

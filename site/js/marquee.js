@@ -7,7 +7,7 @@ const SPEED = 40; // px/s
 
 export function initMarquee(root) {
   if (!root || root.dataset.dragInit) return;
-  const track = root.querySelector('.marquee-track');
+  const track = root.querySelector('[data-marquee-track]');
   if (!track) return;
   root.dataset.dragInit = '1';
 
@@ -63,7 +63,7 @@ export function initMarquee(root) {
     dragDistance = 0;
     startX = e.clientX;
     startPosition = position;
-    root.classList.add('is-dragging');
+    root.style.cursor = 'grabbing';
     root.setPointerCapture?.(e.pointerId);
   });
 
@@ -79,7 +79,7 @@ export function initMarquee(root) {
   function endDrag(e) {
     if (!dragging) return;
     dragging = false;
-    root.classList.remove('is-dragging');
+    root.style.cursor = '';
     root.releasePointerCapture?.(e.pointerId);
   }
   root.addEventListener('pointerup', endDrag);

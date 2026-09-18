@@ -4,14 +4,52 @@ Page unique (SPA) : `index.html` charge les 5 vues (Accueil, À propos, Services
 Contact) et bascule entre elles en JS, sans rechargement. Les tokens du design system
 Nocturne, un menu mobile en JS natif, three.js pour le fond animé du hero.
 
+## CSS : Tailwind pur (Play CDN), aucune classe composant
+
+Il n'y a plus aucune classe composant (`.btn`, `.card`…) : chaque élément porte
+directement ses utilitaires Tailwind dans le HTML (et dans les gabarits de
+`js/render.js`). La seule configuration Tailwind vit dans `css/tailwind-config.css`,
+compilée au runtime par `@tailwindcss/browser` (CDN, pas d'étape de build) :
+
+`@tailwindcss/browser` ne sait lire que des balises `<style type="text/tailwindcss">`
+inline (pas de `<link>` ni de `<script src>` vers un fichier externe). Pour garder la
+config dans un fichier à part quand même, `index.html` charge `css/tailwind-config.css`
+en JS et injecte son contenu dans une balise `<style type="text/tailwindcss" id="tw-config">`
+vide ; le compilateur observe cette balise et recompile dès que son contenu change.
+Contrepartie : un très bref flash sans style le temps du `fetch()`.
+
+`css/tailwind-config.css` ne contient que de la configuration Tailwind :
+
+- `@theme` déclare les tokens du design system Nocturne (couleurs, rayons, ombres,
+  espacement, polices, animations) — ce sont eux qui génèrent les utilitaires
+  (`bg-accent`, `shadow-sm`, `rounded-xs`, `font-heading`, `animate-marquee`…).
+  `--spacing: 2.8px` aligne l'échelle numérique Tailwind (`p-4`, `gap-8`…) sur
+  l'ancienne échelle `--space-*` de Nocturne.
+- `@custom-variant theme-dark` / `theme-light` permettent de cibler `[data-theme]`
+  directement avec des utilitaires (`theme-dark:hidden`…).
+- `html[data-theme="light"] { --color-*: … }` redéfinit les tokens en thème clair.
+- Deux `@keyframes` (page-in, marquee) sont requis par `--animate-page-in` /
+  `--animate-marquee` (Tailwind ne génère pas les keyframes elles-mêmes).
+
+Pour les valeurs qui n'ont pas d'équivalent en utilitaire nommé (masques CSS,
+dégradés de fond, ratios non standard…), on utilise la syntaxe valeur arbitraire de
+Tailwind (`[mask-image:...]`, `bg-[linear-gradient(...)]`) directement dans la
+classe — jamais une règle CSS séparée.
+
+Le contenu Markdown du CMS (page « à propos », rendu par `marked.js`) n'a pas de
+classe CSS globale à laquelle s'accrocher (pas de plugin `@tailwindcss/typography`
+disponible avec le CDN navigateur) : `js/render.js` parse le Markdown puis pose les
+utilitaires Tailwind après coup sur chaque balise générée (`<p>`, `<h2>`, `<ul>`,
+`<a>`…) via le DOM, plutôt que via un `marked.Renderer` custom (dont la signature a
+changé entre versions de `marked`).
+
 ## Fichiers
 
     site/
-      index.html        Coquille unique : header/footer + les 5 <section data-view="…">
+      index.html               Coquille unique : header/footer + les 5 <section data-view="…">
+      css/tailwind-config.css  Configuration Tailwind (@theme, variantes, keyframes) — voir ci-dessus
       assets/logo.svg    Logo Lobos (affiché en masque CSS : il prend la couleur du thème)
       assets/favicon.svg Favicon (logo en violet accent)
-      css/nocturne.css   Tokens et composants du design system (ne pas modifier ici)
-      css/lobos.css      Couche site : layout, thème clair, carrousel
       js/app.js          Bascule de thème (cookie) + menu mobile
       js/hero.js         Fond animé blueprint (module three.js)
       js/main.js         Point d'entrée : démarre le routeur
@@ -40,8 +78,8 @@ Pour régénérer localement : `npm install && npm run build:content`.
 
 Le bouton en haut à droite écrit un cookie `lobos-theme` (365 jours, `path=/`), donc le choix
 est global au site. Un script inline dans le `<head>` applique le thème avant le premier
-rendu pour éviter le flash. Les couleurs passent par `html[data-theme="light"]` dans
-`css/lobos.css` : seules les variables sont redéfinies.
+rendu pour éviter le flash. Les couleurs passent par `html[data-theme="light"]` dans le bloc
+`<style type="text/tailwindcss">` de `index.html` : seules les variables sont redéfinies.
 
 ## Ajouter un projet au portfolio
 
