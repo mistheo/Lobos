@@ -11,4 +11,4 @@ Lobos est né en 2023 d'un constat simple : beaucoup de gens ont besoin d'une pi
 
 Nous travaillons donc à l'échelle de la pièce unique autant qu'à celle de la série. Un particulier qui veut réparer son lave-linge et un bureau d'études qui teste un boîtier passent par la même porte.
 
-L'atelier est à Toulouse. Vous pouvez venir voir les machines et repartir avec votre pièce.
+L'atelier est à Lyon. Vous pouvez venir voir les machines et repartir avec votre pièce.
