@@ -1,6 +1,6 @@
 /* Fond animé du hero : le logo Lobos en maillage 3D low-poly (three.js). */
-import * as THREE from 'https://unpkg.com/three@0.184.0/build/three.module.js';
-import { SVGLoader } from 'https://unpkg.com/three@0.184.0/examples/jsm/loaders/SVGLoader.js';
+import * as THREE from 'three';
+import { SVGLoader } from 'three/addons/loaders/SVGLoader.js';
 
 const canvas = document.getElementById('hero-canvas');
 if (canvas) {
