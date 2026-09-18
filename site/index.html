@@ -662,28 +662,10 @@
               >
                 Nous joindre
               </h6>
-              <ul class="list-none m-0 p-0 flex flex-col gap-3 text-sm">
-                <li class="flex gap-4 items-start">
-                  <i class="ph ph-envelope-simple text-accent"></i
-                  ><a
-                    class="text-inherit no-underline hover:text-accent outline-hidden focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2"
-                    href="mailto:bonjour@lobos.fr"
-                    >bonjour@lobos.fr</a
-                  >
-                </li>
-                <li class="flex gap-4 items-start">
-                  <i class="ph ph-phone text-accent"></i
-                  ><a
-                    class="text-inherit no-underline hover:text-accent outline-hidden focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2"
-                    href="tel:+33561000000"
-                    >05 61 00 00 00</a
-                  >
-                </li>
-                <li class="flex gap-4 items-start">
-                  <i class="ph ph-map-pin text-accent"></i
-                  ><span>12 rue des Ateliers<br />31000 Lyon</span>
-                </li>
-              </ul>
+              <ul
+                class="list-none m-0 p-0 flex flex-col gap-3 text-sm"
+                data-slot="contact-aside"
+              ></ul>
             </div>
             <hr
               class="h-px border-0 my-4 [background:linear-gradient(to_right,transparent,var(--color-divider)_48px,var(--color-divider)_calc(100%-48px),transparent)]"
@@ -762,8 +744,7 @@
           >
             Contact
           </h6>
-          <span>bonjour@lobos.fr</span><span>05 61 00 00 00</span
-          ><span class="text-muted">12 rue des Ateliers, Lyon</span>
+          <div class="flex flex-col gap-2" data-slot="contact-footer"></div>
         </div>
       </div>
     </footer>

@@ -51,6 +51,8 @@ async function renderView(id) {
       setSlot('a-propos-body', render.renderAProposBody(aPropos.bodyMarkdown));
       setSlot('a-propos-valeurs', render.renderAProposValeurs(aPropos.valeurs));
       setSlot('equipe', render.renderEquipe(equipe));
+    } else if (id === 'contact') {
+      setSlot('contact-aside', render.renderContactAside(await data.loadContact()));
     }
     rendered.add(id);
   } catch (e) {
@@ -101,6 +103,10 @@ async function goTo(id, { push = true } = {}) {
 }
 
 export function initRouter() {
+  data.loadContact()
+    .then((contact) => setSlot('contact-footer', render.renderFooterContact(contact)))
+    .catch((e) => console.error('[router] rendu du contact (pied de page) impossible :', e));
+
   document.addEventListener('click', (e) => {
     const link = e.target.closest('a[href^="#"]');
     if (!link) return;
