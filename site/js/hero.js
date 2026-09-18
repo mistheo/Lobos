@@ -89,6 +89,10 @@ if (canvas) {
 
   let t = 0;
   const buildDuration = 0.7; // secondes : durée de l'effet d'impression 3D, joué une seule fois
+  const baseX = group.position.x;
+  const baseY = group.position.y;
+  let nextGlitchAt = 2 + Math.random() * 3;
+  let glitchUntil = 0;
   function frame() {
     requestAnimationFrame(frame);
     if (!reduced) {
@@ -101,6 +105,21 @@ if (canvas) {
         const buildT = Math.min((t - printStartT) / buildDuration, 1);
         const revealY = printMinY + (printMaxY - printMinY) * buildT;
         printPlane.constant = revealY;
+      }
+
+      // léger effet de glitch, bref et occasionnel
+      if (t >= nextGlitchAt && t >= glitchUntil) {
+        glitchUntil = t + 0.04 + Math.random() * 0.06;
+        nextGlitchAt = t + 3 + Math.random() * 4;
+      }
+      if (t < glitchUntil) {
+        group.position.x = baseX + (Math.random() - 0.5) * 0.06;
+        group.position.y = baseY + (Math.random() - 0.5) * 0.04;
+        group.visible = Math.random() > 0.3;
+      } else {
+        group.position.x = baseX;
+        group.position.y = baseY;
+        group.visible = true;
       }
     }
     renderer.render(scene, camera);
