@@ -75,28 +75,6 @@ if (canvas) {
       logo.material.clippingPlanes = [printPlane];
       group.add(logo);
 
-      // fines lignes de couches empilées façon strates d'impression 3D, révélées avec le logo
-      const bb = geometry.boundingBox;
-      const layerCount = 16;
-      const layerPositions = [];
-      for (let i = 0; i <= layerCount; i += 1) {
-        const y = bb.min.y + ((bb.max.y - bb.min.y) * i) / layerCount;
-        const corners = [
-          [bb.min.x, y, bb.min.z], [bb.max.x, y, bb.min.z],
-          [bb.max.x, y, bb.min.z], [bb.max.x, y, bb.max.z],
-          [bb.max.x, y, bb.max.z], [bb.min.x, y, bb.max.z],
-          [bb.min.x, y, bb.max.z], [bb.min.x, y, bb.min.z],
-        ];
-        corners.forEach(([x, yy, z]) => layerPositions.push(x, yy, z));
-      }
-      const layersGeometry = new THREE.BufferGeometry();
-      layersGeometry.setAttribute('position', new THREE.Float32BufferAttribute(layerPositions, 3));
-      const layers = new THREE.LineSegments(
-        layersGeometry,
-        new THREE.LineBasicMaterial({ color: accent, transparent: true, opacity: 0.18, clippingPlanes: [printPlane] })
-      );
-      group.add(layers);
-
       // démarre le chrono d'impression seulement une fois le maillage prêt
       printStartT = t;
     });
