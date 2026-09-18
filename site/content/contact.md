@@ -1,9 +1,8 @@
 ---
 email: lobosprint@gmail.com
 telephone: "0766104081"
-adresse: |-
-  12 rue des Ateliers
-  31000 Lyon
-latitude: 45.7578
-longitude: 4.832
+adresse: 19 Rue de Margnolles, 69300 Caluire-et-Cuire
+instagram: https://www.instagram.com/lobos.print/
+latitude: 45.78387058229223
+longitude: 4.8346849314214815
 ---
