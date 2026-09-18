@@ -1,6 +1,5 @@
 ---
-nom: Prénom Nom
-role: Impression et finitions
-photo: ''
+nom: Killian D'Hostingue
+role: "Conceptions, Impression et finitions "
 ordre: 1
 ---
