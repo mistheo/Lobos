@@ -1,4 +1,4 @@
 ---
-titre: Filament ou résine, selon l'usage de la pièce.
+titre: Discussions
 ordre: 2
 ---
