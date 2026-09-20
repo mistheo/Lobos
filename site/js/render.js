@@ -13,8 +13,10 @@ const CARD_KICKER = 'text-[10px] tracking-[0.1em] uppercase text-accent';
 const CARD_TITLE = 'font-heading font-medium text-[17px] leading-[1.2] m-0';
 const CARD_BODY = 'm-0 text-[13px] opacity-80 flex-1';
 const BTN_PRIMARY_BLOCK = 'inline-flex items-center justify-center gap-1.5 cursor-pointer no-underline font-heading font-medium text-sm leading-[1.2] text-accent bg-transparent border border-accent rounded-xs px-[10.08px] py-2 w-full mt-2 outline-hidden focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2 hover:bg-[color-mix(in_srgb,var(--color-accent)_12%,transparent)] active:bg-[color-mix(in_srgb,var(--color-accent)_22%,transparent)]';
-const PH_SLOT_43 = 'grid place-items-center text-center aspect-[4/3] [background:repeating-linear-gradient(135deg,var(--color-surface)_0_9px,color-mix(in_srgb,var(--color-text)_7%,transparent)_9px_18px)]';
+const PH_SLOT_43 = 'grid place-items-center gap-1.5 text-center aspect-[4/3] [background:repeating-linear-gradient(135deg,var(--color-surface)_0_9px,color-mix(in_srgb,var(--color-text)_7%,transparent)_9px_18px)]';
 const PH_SLOT_SPAN = 'font-mono text-[10px] tracking-[0.1em] text-[color-mix(in_srgb,var(--color-text)_55%,transparent)]';
+const PH_SLOT_ICON = 'ph ph-puzzle-piece text-[28px] text-[#39ff14] [filter:drop-shadow(0_0_6px_#39ff14)]';
+const PROJECT_IMG = 'aspect-[4/3] object-cover rounded-xs bg-surface';
 
 const SERVICE_ICON = 'inline-flex items-center justify-center w-10 h-10 rounded-sm bg-[color-mix(in_srgb,var(--color-accent)_10%,transparent)] text-accent text-[19px] shrink-0s';
 
@@ -47,9 +49,12 @@ export function renderAtoutsList(atouts) {
 // Carte projet, réutilisée pour les projets phares (accueil) et la galerie.
 function projectCard(p, { hidden = false } = {}) {
   const ariaHidden = hidden ? ' aria-hidden="true"' : '';
+  const visual = p.image
+    ? `<img class="${PROJECT_IMG}" src="${escapeHtml(p.image)}" alt="${escapeHtml(p.titre)}" loading="lazy">`
+    : `<div class="${PH_SLOT_43}"><i class="${PH_SLOT_ICON}" aria-hidden="true"></i><span class="${PH_SLOT_SPAN}">photo à venir</span></div>`;
   return `
     <article class="${CARD} shrink-0 w-[300px]"${ariaHidden}>
-      <div class="${PH_SLOT_43}"><span class="${PH_SLOT_SPAN}">photo projet</span></div>
+      ${visual}
       <div class="${CARD_KICKER}">${escapeHtml(p.categorie)}</div>
       <h3 class="${CARD_TITLE}">${escapeHtml(p.titre)}</h3>
       <p class="${CARD_BODY}">${escapeHtml(p.description)}</p>
