@@ -6,45 +6,5 @@
     "description": "Pièce cassée remodelée en PETG, plus épaisse que l'originale.",
     "phare": true,
     "ordre": 1
-  },
-  {
-    "titre": "Maquette d'architecte 1:100",
-    "categorie": "Maquettes",
-    "image": "",
-    "description": "Six bâtiments en résine, assemblés et peints pour une présentation.",
-    "phare": true,
-    "ordre": 2
-  },
-  {
-    "titre": "Gabarits d'atelier",
-    "categorie": "Professionnels",
-    "image": "",
-    "description": "Quarante pièces identiques pour un menuisier, en deux semaines.",
-    "phare": true,
-    "ordre": 3
-  },
-  {
-    "titre": "Support de casque sur mesure",
-    "categorie": "Particuliers",
-    "image": "",
-    "description": "Dessiné d'après les mesures du bureau, imprimé en PLA mat.",
-    "phare": false,
-    "ordre": 4
-  },
-  {
-    "titre": "Figurines de jeu",
-    "categorie": "Particuliers",
-    "image": "",
-    "description": "Résine 25 µm, apprêtées et prêtes à peindre.",
-    "phare": false,
-    "ordre": 5
-  },
-  {
-    "titre": "Boîtier électronique",
-    "categorie": "Professionnels",
-    "image": "",
-    "description": "Prototype validé en trois itérations avec le client.",
-    "phare": false,
-    "ordre": 6
   }
 ]
