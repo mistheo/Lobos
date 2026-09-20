@@ -1,8 +1,0 @@
----
-titre: Lampe Multicolor LED
-categorie: Particuliers
-image: assets/uploads/iconedc.png
-description: Element de teste
-phare: true
-ordre: 1
----
