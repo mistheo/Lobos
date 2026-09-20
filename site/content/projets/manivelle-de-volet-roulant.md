@@ -1,8 +1,8 @@
 ---
-titre: Manivelle de volet roulant
-categorie: Réparation
+titre: Lampe Multicolor LED
+categorie: Particuliers
 image: assets/uploads/iconedc.png
-description: Pièce cassée remodelée en PETG, plus épaisse que l'originale.
+description: Element de teste
 phare: true
 ordre: 1
 ---
